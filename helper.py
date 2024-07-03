@@ -6,12 +6,27 @@ from corrections import pattern_correction, lowpass
 
 class Data_reduction:
     
-    def __init__(self, raw_data_directory:str, reduced_data_directory:str, number_data:int=None, sampling_time:float=1.6e-9) -> None:
-        self._raw_dir = raw_data_directory
-        self._reduced_dir = reduced_data_directory
-        self._n_data = number_data
-        self._sampling_time = sampling_time
+    def __init__(self, raw_data_directory:str, reduced_data_directory:str=None, number_data:int=None, sampling_time:float=1.6e-9) -> None:
+        '''
+        Initialises the Data_reduction object. The object is used to reduce the raw data to an average g2 and to calculate the Fourier transform of the average g2.
         
+        Takes:
+            - raw_data_directory: str, the path to the directory containing the raw data.
+            - reduced_data_directory: str, optional; the path to the directory where the reduced data will be saved. Default is None, which means the reduced data will be saved at location 'reduced_data/raw_data_dir'.
+            - number_data: int, optional; the number of data to reduce. Default is None, which means all data in the directory will be reduced.
+            - sampling_time: float, optional; the sampling time of the data. Default is 1.6ns.
+        '''
+        self._raw_dir = os.path.normpath(raw_data_directory)
+        if reduced_data_directory is None:
+            self._reduced_dir = os.path.join('reduced_data', os.path.basename(self._raw_dir))
+        else:
+            self._reduced_dir = reduced_data_directory    
+        if number_data is None:
+            self._n_data = len(self._get_file_path_list(self._raw_dir))
+        else:
+            self._n_data = number_data
+        self._sampling_time = sampling_time
+            
         self.time_arr = np.arange(-5000*self._sampling_time, 5000*self._sampling_time, self._sampling_time)
         self.av_g2 = None   
             
@@ -22,22 +37,20 @@ class Data_reduction:
         Takes: 
             - repeat_calculation: bool, optional; if True the data reduction will be done even if the reduced data already exists. Default is False.
         '''
-        # If the user did not specify the number of data to reduce, use all data in the directory:
-        if self._n_data is None:
-            self._n_data = self._count_files_in_directory(self._raw_dir)
-        filename = 'average' +'_'+ str(self._n_data) # This is the name of the reduced data file. 
+        # Set the name of the file where the average g2 will be saved:
+        filename = 'average' +'_'+ str(self._n_data)  + '.txt'  
         # Load data reduction from saved data if already done and the user does not want to repeat the calculation:
-        if os.path.exists(self._reduced_dir + '\\' + filename + '.txt') and not repeat_calculation:
-            self.av_g2 = np.loadtxt(self._reduced_dir + '\\' + filename + '.txt')
+        if os.path.exists(os.path.join(self._reduced_dir, filename)) and not repeat_calculation:
+            self.av_g2 = np.loadtxt(os.path.join(self._reduced_dir, filename))
         # Otherwise do the data reduction:        
         else:  
             self._set_average_g2()
             # Create the reduced data directory if it does not exist and save the data:
             if not os.path.exists(self._reduced_dir):
                 os.makedirs(self._reduced_dir)
-            np.savetxt(self._reduced_dir + '\\' + filename + '.txt', self.av_g2)
+            np.savetxt(os.path.join(self._reduced_dir, filename), self.av_g2)
     
-    # (This should probably be in its own utils class that inherits from Data_reduction:)     
+    # (This should probably be in its own utils class that inherits from Data_reduction, together with later integration)     
     def batch_fft(self, repeat_calculation:bool=False) -> tuple:
         '''
         Method that calculates the Fourier transform of the average g2 data. 
@@ -63,11 +76,9 @@ class Data_reduction:
         '''
         sum = np.zeros(10000)
         weight_sum = 0
-        for n in tqdm(range(self._n_data), desc='Do data reduction'): 
-            path = self._raw_dir + '\measurement_' + str(n).zfill(5) + '.fcorr'
-            # Check if the file is missing due to errors in the correlation. If so, skip the file:
-            if not os.path.exists(path):
-                continue
+        # Take the first n_data files in the raw data directory (or all if n_data is None):
+        file_path_list = self._get_file_path_list(self._raw_dir)[:self._n_data]
+        for path in tqdm(file_path_list, desc='Do data reduction'): 
             data = np.loadtxt(path)
             data = pattern_correction(data)
             weight = np.std(data)**-2
@@ -76,8 +87,8 @@ class Data_reduction:
         average_g2 = sum/weight_sum
         self.av_g2 = lowpass(average_g2)
 
-    def _count_files_in_directory(self, directory) -> int:
+    def _get_file_path_list(self, directory) -> int:
         ''' 
-        Helper function that counts the number of files in a given directory. 
+        Helper mehtod that returns a list of all paths to files in a given directory. 
         '''
-        return len([f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))])
+        return [os.path.join(directory, f) for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
