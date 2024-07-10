@@ -2,3 +2,4 @@ corr_data/
 __pycache__/
 reduced_data/
 *.png
+batch_integrals/

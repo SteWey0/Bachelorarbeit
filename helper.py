@@ -78,8 +78,13 @@ class Data_reduction:
         weight_sum = 0
         # Take the first n_data files in the raw data directory (or all if n_data is None):
         file_path_list = self._get_file_path_list(self._raw_dir)[:self._n_data]
+        if os.path.splitext(file_path_list[0])[1] == '.npy':
+            use_npy = True
         for path in tqdm(file_path_list, desc='Do data reduction'): 
-            data = np.loadtxt(path)
+            if use_npy:
+                data = np.load(path) # Use faster loading of .npy files if possible
+            else:
+                data = np.loadtxt(path) # Kept there for compatibility with old .fcorr txt-data
             data = pattern_correction(data)
             weight = np.std(data)**-2
             sum += data*weight
@@ -92,3 +97,15 @@ class Data_reduction:
         Helper mehtod that returns a list of all paths to files in a given directory. 
         '''
         return [os.path.join(directory, f) for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
+    
+    def _return_mean_pulseshapes(self) -> tuple:
+        '''
+        Helper method that returns the mean PMT-pulseshapes of the data. Expects them to be saved in raw_data_directory/chX/calib.shape1 where X is either 0  or 1.
+        
+        Returns:
+            - ch0, ch1: np.array, the mean PMT-pulseshapes of channel 0 and 1 respectively.
+        '''
+        ch0 = np.loadtxt(os.path.join(self._raw_dir, 'ch0', 'calib.shape1'))
+        ch1 = np.loadtxt(os.path.join(self._raw_dir, 'ch1', 'calib.shape1'))
+        return ch0, ch1
+        
