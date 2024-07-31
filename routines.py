@@ -8,7 +8,8 @@ class Data_reduction:
     
     def __init__(self, raw_data_directory:str, reduced_data_directory:str=None, number_data:int=None, sampling_time:float=1.6e-9) -> None:
         '''
-        Initialises the Data_reduction object. The object is used to reduce the raw data to an average g2 and to calculate the Fourier transform of the average g2.
+        Initialises the Data_reduction object. The object is used to reduce the raw data to an average g2 and to calculate the Fourier transform of the average g2. Support for .npy files is included, 
+        while maintaining compatibility with the txt-data format (such as .fcorr).
         
         Takes:
             - raw_data_directory: str, the path to the directory containing the raw data.
@@ -80,6 +81,8 @@ class Data_reduction:
         file_path_list = self._get_file_path_list(self._raw_dir)[:self._n_data]
         if os.path.splitext(file_path_list[0])[1] == '.npy':
             use_npy = True
+        else:
+            use_npy = False
         for path in tqdm(file_path_list, desc='Do data reduction'): 
             if use_npy:
                 data = np.load(path) # Use faster loading of .npy files if possible

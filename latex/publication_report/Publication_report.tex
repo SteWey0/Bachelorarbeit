@@ -1,0 +1,35 @@
+\documentclass[11pt,paper=a4,twoside,headsepline,numbers=noenddot,toc=bibliography,cleardoublepage=empty,parskip=half,DIV=calc,BCOR=6mm,pagesize=pdftex]{article}
+
+\usepackage{url}
+\usepackage[utf8]{inputenc} 
+\usepackage[english, german]{babel}
+\usepackage[backend=bibtex,
+style=authoryear,
+natbib=true,
+maxcitenames = 2,
+maxbibnames = 5,
+minbibnames = 4]{biblatex}
+\setlength\bibitemsep{1.5\itemsep}
+
+\addbibresource{orcid_export_only_my_stuff.bib}
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=40mm,
+    % right=20mm,
+	top=35mm,
+}
+
+\begin{document}
+
+% Cite all
+\nocite{*}
+
+\renewcommand\refname{Publications}
+
+\printbibliography[
+heading=bibintoc,
+title={Publications}
+]
+
+\end{document}

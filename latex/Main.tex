@@ -1,0 +1,272 @@
+\documentclass[11pt,paper=a4,twoside,headsepline,numbers=noenddot,toc=bibliography,cleardoublepage=empty,parskip=half,DIV=calc,BCOR=6mm,pagesize=pdftex]{article}
+
+
+
+%---------------------------------------------------------
+%	Speed up compile time
+%---------------------------------------------------------
+% uncommenting these lines will disable PDF compression.
+% As a result the PDF will be massive (~100MB) but will compile faster.
+% Make sure to comment this out when you want to share the PDF.
+
+% \pdfcompresslevel=0
+% \pdfobjcompresslevel=0
+
+
+%---------------------------------------------------------
+%	Aditional Packages
+%---------------------------------------------------------
+\usepackage{titlepage} % included in the archive and does some styling
+\usepackage[absolute]{textpos}
+\usepackage[separate-uncertainty = true]{siunitx} % enable easy SI units with \SI{VALUE}{\meter}
+% Note: errors are written like this \SI{10(1)}{\meter} will show up as (10 ± 1) m
+
+\usepackage{subcaption} % To have multiple plots side by side
+\usepackage{float}
+\usepackage{url} % enable clickable URLs
+\usepackage{hyperref}[hidelinks] % enable clickable links to sections, figures, etc. 
+\usepackage{listings} % to have code blocks in your document
+\usepackage{xcolor}
+\usepackage{doi}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{nicefrac} % creates a fraction that is nicer when used in text \nicefrac{1}{2}
+\usepackage[acronym]{glossaries} % creates list of acronyms for you and handles everything
+
+% Make acronyms and tell it the file with the acronym definitions
+\makenoidxglossaries
+\input{chapters/Acronyms}
+
+% Define some colors for code 
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+
+% Remove the coloured border around autoref links
+\hypersetup{%
+    pdfborder = {0 0 0}
+}
+
+% Defines codeblock styles
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+% Set the maximum depth sections are counted to and shown in the TOC
+\setcounter{secnumdepth}{3} % depth of counting
+\setcounter{tocdepth}{3} % depth that toc will show 
+
+% new paragraph style with new line
+\newcommand{\myparagraph}[1]{\paragraph{#1}\mbox{}\\}
+
+
+\lstset{style=mystyle}
+\renewcommand{\lstlistingname}{Configuration}% Listing -> Configuration
+
+% Toogle between the two to hide or show images
+% \usepackage[draft]{graphicx}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc} 
+\usepackage[english, german]{babel}
+\usepackage{upgreek}
+\usepackage{titlesec}
+\usepackage{physics} % adds easy derivatives etc. 
+\usepackage{amssymb} % more symbols
+\usepackage{amsmath} %enables align environment
+\usepackage{multirow}
+
+
+% \usepackage[showframe]{geometry} % Shows margins in pdf if you want to know what's going on
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	left=40mm,
+    % right=20mm,
+	top=35mm,
+}
+\defcaptionname*{english}{\subsectionautorefname}{section}
+\defcaptionname*{english}{\subsubsectionautorefname}{section}
+
+% Declare new commands
+\newcommand{\Orafol}{Orafol SC 943}
+\newcommand{\gammapy}{\textit{gammapy}}
+
+
+
+\usepackage{eurosym} % offers euro symbol
+% Declare new SI units
+\DeclareSIUnit{\sieuro}{\mbox{\euro}} % Euro
+\DeclareSIUnit{\inch}{\mbox{''}}
+\DeclareSIUnit{\adc}{\mbox{ADC-counts}}
+\DeclareSIUnit{\sample}{\mbox{S}} 
+\DeclareSIUnit{\pe}{\mbox{p.e.}} 
+\DeclareSIUnit{\gauss}{G}
+
+
+
+\usepackage[separate-uncertainty = true]{siunitx}
+
+% Use biblatex
+\usepackage[backend=bibtex,
+style=authoryear,
+natbib=true,
+maxcitenames = 2,
+maxbibnames = 5,
+minbibnames = 4]{biblatex}
+
+\usepackage{csquotes}
+
+\addbibresource{references.bib}
+\setlength\bibitemsep{1.5\itemsep}
+
+\begin{document}	
+\pagestyle{empty}
+\selectlanguage{english}
+
+%---------------------------------------------------------
+%	Titlepage
+%---------------------------------------------------------
+
+% The Titlepage of your Thesis
+\input{chapters/titlepage.tex}
+\pagenumbering{gobble}
+
+
+\clearpage
+\mbox{}
+\clearpage
+\pagestyle{plain}
+
+%---------------------------------------------------------
+%	Abstracts
+% ---------------------------------------------------------
+
+\selectlanguage{german}
+\input{chapters/abstract.tex}
+\clearpage
+\mbox{}
+\clearpage
+
+% Set the language for the rest of the work
+\selectlanguage{german}
+
+%---------------------------------------------------------
+%	Table of Contents
+%---------------------------------------------------------
+% Generate 
+\tableofcontents
+\clearpage
+\pagenumbering{arabic}
+\setcounter{page}{1}
+
+%---------------------------------------------------------
+%	Your Work
+%---------------------------------------------------------
+% This is where your work comes in 
+
+% -------------------------------
+
+% It is recommended, to import your chapters from a master file for easier management
+\section{Theorie}
+\label{sec:Theorie}
+\input{chapters/Theorie.tex}
+\clearpage
+
+%---------------------------------------------------------
+%	Acronyms
+%---------------------------------------------------------
+
+\clearpage
+\mbox{}
+\clearpage
+\printnoidxglossary[type=acronym]
+\printacronyms
+\clearpage
+
+%---------------------------------------------------------
+%	Appendix (if needed)
+%---------------------------------------------------------
+\clearpage
+\mbox{}
+\clearpage
+\appendix
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\addtocontents{toc}{\protect\renewcommand{\protect\sectionautorefname}{Appendix}}
+\newgeometry{
+	a4paper,
+	left=40mm,
+    % right=20mm,
+	top=15mm,
+}
+    \input{chapters/Appendix}
+
+
+
+%---------------------------------------------------------
+%	Bibliography
+%---------------------------------------------------------
+
+\clearpage
+\mbox{}
+\clearpage
+
+\newgeometry{
+	a4paper,
+	left=40mm,
+    % right=20mm,
+	top=35mm,
+}
+\renewcommand\refname{Bibliography}
+% \printbibliography
+\printbibliography[
+heading=bibintoc,
+title={Bibliography}
+]
+\clearpage
+\mbox{}
+\clearpage
+
+\input{chapters/acknowledgements.tex}
+
+
+\clearpage
+%---------------------------------------------------------
+%	Eigenständigkeitserklärung / Declaration of independence
+%---------------------------------------------------------
+
+\selectlanguage{german}
+\section*{Eigenständigkeitserklärung}
+Hiermit versichere ich, Stephen Weybrecht (22967286), die vorgelegte Arbeit selbstständig und ohne unzulässige Hilfe Dritter sowie ohne die Hinzuziehung nicht offengelegter und insbesondere nicht zugelassener Hilfsmittel angefertigt zu haben. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen und wurde auch von keiner anderen Prüfungsbehörde bereits als Teil einer Prüfung angenommen.\\
+
+Die Stellen der Arbeit, die anderen Quellen im Wortlaut oder dem Sinn nach entnommen wurden, sind durch Angaben der Herkunft kenntlich gemacht. Dies gilt auch für Zeichnungen, Skizzen, bildliche Darstellungen sowie für Quellen aus dem Internet.\\
+
+Mir ist insbesondere bewusst, dass die Nutzung künstlicher Intelligenz verboten ist, sofern diese nicht ausdrücklich als Hilfsmittel von dem Prüfungsleiter bzw. der Prüfungsleiterin zugelassen wurde. Dies gilt insbesondere für Chatbots (insbesondere ChatGPT) bzw. allgemein solche Programme, die anstelle meiner Person die Aufgabenstellung der Prüfung bzw. Teile derselben bearbeiten könnten.\\
+
+\vspace{10cm}
+\begin{flushleft}
+\makebox[.4\textwidth]{\hrulefill}\hfill \makebox[.4\textwidth]{\hrulefill}\\
+\makebox[.4\textwidth]{Ort, Datum}\hfill
+\makebox[.4\textwidth]{Unterschrift}\\
+\end{flushleft}
+
+
+\end{document}
+
