@@ -1,4 +1,4 @@
-\documentclass[11pt,paper=a4,twoside,headsepline,numbers=noenddot,toc=bibliography,cleardoublepage=empty,parskip=half,DIV=calc,BCOR=6mm,pagesize=pdftex]{article}
+\documentclass[11pt,a4paper,twoside,headsepline,numbers=noenddot,toc=bibliography,cleardoublepage=empty,parskip=half,DIV=calc,BCOR=6mm,pagesize=pdftex]{article}
 
 
 
@@ -16,6 +16,7 @@
 %---------------------------------------------------------
 %	Aditional Packages
 %---------------------------------------------------------
+\usepackage[german]{babel}
 \usepackage{titlepage} % included in the archive and does some styling
 \usepackage[absolute]{textpos}
 \usepackage[separate-uncertainty = true]{siunitx} % enable easy SI units with \SI{VALUE}{\meter}
@@ -24,7 +25,6 @@
 \usepackage{subcaption} % To have multiple plots side by side
 \usepackage{float}
 \usepackage{url} % enable clickable URLs
-\usepackage{hyperref}[hidelinks] % enable clickable links to sections, figures, etc. 
 \usepackage{listings} % to have code blocks in your document
 \usepackage{xcolor}
 \usepackage{doi}
@@ -42,13 +42,6 @@
 \definecolor{codegray}{rgb}{0.5,0.5,0.5}
 \definecolor{codepurple}{rgb}{0.58,0,0.82}
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\PassOptionsToPackage{unicode}{hyperref}
-\PassOptionsToPackage{naturalnames}{hyperref}
-
-% Remove the coloured border around autoref links
-\hypersetup{%
-    pdfborder = {0 0 0}
-}
 
 % Defines codeblock styles
 \lstdefinestyle{mystyle}{
@@ -85,10 +78,10 @@
 % \usepackage[draft]{graphicx}
 \usepackage{graphicx}
 \usepackage[utf8]{inputenc} 
-\usepackage[english, german]{babel}
 \usepackage{upgreek}
 \usepackage{titlesec}
 \usepackage{physics} % adds easy derivatives etc. 
+\AtBeginDocument{\RenewCommandCopy\qty\SI} % dont know why
 \usepackage{amssymb} % more symbols
 \usepackage{amsmath} %enables align environment
 \usepackage{multirow}
@@ -97,25 +90,25 @@
 % \usepackage[showframe]{geometry} % Shows margins in pdf if you want to know what's going on
 \usepackage{geometry}
 \geometry{
-	a4paper,
+    %a4paper,
 	left=40mm,
     % right=20mm,
 	top=35mm,
-}
-\defcaptionname*{english}{\subsectionautorefname}{section}
-\defcaptionname*{english}{\subsubsectionautorefname}{section}
-
-% Declare new commands
-\newcommand{\Orafol}{Orafol SC 943}
-\newcommand{\gammapy}{\textit{gammapy}}
-
-
-
-\usepackage{eurosym} % offers euro symbol
-% Declare new SI units
-\DeclareSIUnit{\sieuro}{\mbox{\euro}} % Euro
-\DeclareSIUnit{\inch}{\mbox{''}}
-\DeclareSIUnit{\adc}{\mbox{ADC-counts}}
+    }
+    \defcaptionname*{german}{\subsectionautorefname}{section}
+    \defcaptionname*{german}{\subsubsectionautorefname}{section}
+    
+    % Declare new commands
+    \newcommand{\Orafol}{Orafol SC 943}
+    \newcommand{\gammapy}{\textit{gammapy}}
+    
+    
+    
+    \usepackage{eurosym} % offers euro symbol
+    % Declare new SI units
+    \DeclareSIUnit{\sieuro}{\mbox{\euro}} % Euro
+    \DeclareSIUnit{\inch}{\mbox{''}}
+    \DeclareSIUnit{\adc}{\mbox{ADC-counts}}
 \DeclareSIUnit{\sample}{\mbox{S}} 
 \DeclareSIUnit{\pe}{\mbox{p.e.}} 
 \DeclareSIUnit{\gauss}{G}
@@ -125,8 +118,7 @@
 \usepackage[separate-uncertainty = true]{siunitx}
 
 % Use biblatex
-\usepackage[backend=bibtex,
-style=authoryear,
+\usepackage[backend=biber,
 natbib=true,
 maxcitenames = 2,
 maxbibnames = 5,
@@ -137,9 +129,28 @@ minbibnames = 4]{biblatex}
 \addbibresource{references.bib}
 \setlength\bibitemsep{1.5\itemsep}
 
+
+% --------------------------------------------------------
+% CUSTOM STUFF:
+\usepackage[textsize=tiny]{todonotes}
+\setlength{\marginparwidth}{2cm}
+\usepackage{bm}
+%---------------------------------------------------------
+\usepackage{hyperref} % enable clickable links to sections, figures, etc. 
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{naturalnames}{hyperref}
+
+% Remove the coloured border around autoref links
+\hypersetup{%
+pdfborder = {0 0 0}
+}
+
+
+
+
 \begin{document}	
 \pagestyle{empty}
-\selectlanguage{english}
+\selectlanguage{german}
 
 %---------------------------------------------------------
 %	Titlepage
@@ -159,14 +170,14 @@ minbibnames = 4]{biblatex}
 %	Abstracts
 % ---------------------------------------------------------
 
-\selectlanguage{german}
-\input{chapters/abstract.tex}
-\clearpage
-\mbox{}
-\clearpage
+% \selectlanguage{german}
+% \input{chapters/abstract.tex}
+% \clearpage
+% \mbox{}
+% \clearpage
 
-% Set the language for the rest of the work
-\selectlanguage{german}
+% % Set the language for the rest of the work
+% \selectlanguage{german}
 
 %---------------------------------------------------------
 %	Table of Contents
@@ -194,29 +205,29 @@ minbibnames = 4]{biblatex}
 %	Acronyms
 %---------------------------------------------------------
 
-\clearpage
-\mbox{}
-\clearpage
-\printnoidxglossary[type=acronym]
-\printacronyms
-\clearpage
+% \clearpage
+% \mbox{}
+% \clearpage
+% \printnoidxglossary[type=acronym]
+% \printacronyms
+% \clearpage
 
 %---------------------------------------------------------
 %	Appendix (if needed)
 %---------------------------------------------------------
-\clearpage
-\mbox{}
-\clearpage
-\appendix
-\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
-\addtocontents{toc}{\protect\renewcommand{\protect\sectionautorefname}{Appendix}}
-\newgeometry{
-	a4paper,
-	left=40mm,
-    % right=20mm,
-	top=15mm,
-}
-    \input{chapters/Appendix}
+% \clearpage
+% \mbox{}
+% \clearpage
+% \appendix
+% \addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+% \addtocontents{toc}{\protect\renewcommand{\protect\sectionautorefname}{Appendix}}
+% \newgeometry{
+% 	%a4paper,
+% 	left=40mm,
+%     % right=20mm,
+% 	top=15mm,
+% }
+%     \input{chapters/Appendix}
 
 
 
@@ -229,7 +240,7 @@ minbibnames = 4]{biblatex}
 \clearpage
 
 \newgeometry{
-	a4paper,
+	%a4paper,
 	left=40mm,
     % right=20mm,
 	top=35mm,
@@ -238,34 +249,39 @@ minbibnames = 4]{biblatex}
 % \printbibliography
 \printbibliography[
 heading=bibintoc,
-title={Bibliography}
+title={Bibliografie}
 ]
-\clearpage
-\mbox{}
-\clearpage
 
-\input{chapters/acknowledgements.tex}
+%---------------------------------------------------------
+%	Danksagung
+%---------------------------------------------------------
+
+% \clearpage
+% \mbox{}
+% \clearpage
+
+% \input{chapters/acknowledgements.tex}
 
 
-\clearpage
+% \clearpage
 %---------------------------------------------------------
 %	Eigenständigkeitserklärung / Declaration of independence
 %---------------------------------------------------------
 
-\selectlanguage{german}
-\section*{Eigenständigkeitserklärung}
-Hiermit versichere ich, Stephen Weybrecht (22967286), die vorgelegte Arbeit selbstständig und ohne unzulässige Hilfe Dritter sowie ohne die Hinzuziehung nicht offengelegter und insbesondere nicht zugelassener Hilfsmittel angefertigt zu haben. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen und wurde auch von keiner anderen Prüfungsbehörde bereits als Teil einer Prüfung angenommen.\\
+% \selectlanguage{german}
+% \section*{Eigenständigkeitserklärung}
+% Hiermit versichere ich, Stephen Weybrecht (22967286), die vorgelegte Arbeit selbstständig und ohne unzulässige Hilfe Dritter sowie ohne die Hinzuziehung nicht offengelegter und insbesondere nicht zugelassener Hilfsmittel angefertigt zu haben. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen und wurde auch von keiner anderen Prüfungsbehörde bereits als Teil einer Prüfung angenommen.\\
 
-Die Stellen der Arbeit, die anderen Quellen im Wortlaut oder dem Sinn nach entnommen wurden, sind durch Angaben der Herkunft kenntlich gemacht. Dies gilt auch für Zeichnungen, Skizzen, bildliche Darstellungen sowie für Quellen aus dem Internet.\\
+% Die Stellen der Arbeit, die anderen Quellen im Wortlaut oder dem Sinn nach entnommen wurden, sind durch Angaben der Herkunft kenntlich gemacht. Dies gilt auch für Zeichnungen, Skizzen, bildliche Darstellungen sowie für Quellen aus dem Internet.\\
 
-Mir ist insbesondere bewusst, dass die Nutzung künstlicher Intelligenz verboten ist, sofern diese nicht ausdrücklich als Hilfsmittel von dem Prüfungsleiter bzw. der Prüfungsleiterin zugelassen wurde. Dies gilt insbesondere für Chatbots (insbesondere ChatGPT) bzw. allgemein solche Programme, die anstelle meiner Person die Aufgabenstellung der Prüfung bzw. Teile derselben bearbeiten könnten.\\
+% Mir ist insbesondere bewusst, dass die Nutzung künstlicher Intelligenz verboten ist, sofern diese nicht ausdrücklich als Hilfsmittel von dem Prüfungsleiter bzw. der Prüfungsleiterin zugelassen wurde. Dies gilt insbesondere für Chatbots (insbesondere ChatGPT) bzw. allgemein solche Programme, die anstelle meiner Person die Aufgabenstellung der Prüfung bzw. Teile derselben bearbeiten könnten.\\
 
-\vspace{10cm}
-\begin{flushleft}
-\makebox[.4\textwidth]{\hrulefill}\hfill \makebox[.4\textwidth]{\hrulefill}\\
-\makebox[.4\textwidth]{Ort, Datum}\hfill
-\makebox[.4\textwidth]{Unterschrift}\\
-\end{flushleft}
+% \vspace{10cm}
+% \begin{flushleft}
+% \makebox[.4\textwidth]{\hrulefill}\hfill \makebox[.4\textwidth]{\hrulefill}\\
+% \makebox[.4\textwidth]{Ort, Datum}\hfill
+% \makebox[.4\textwidth]{Unterschrift}\\
+% \end{flushleft}
 
 
 \end{document}
