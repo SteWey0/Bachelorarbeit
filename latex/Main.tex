@@ -135,6 +135,7 @@ minbibnames = 4]{biblatex}
 \usepackage[textsize=tiny]{todonotes}
 \setlength{\marginparwidth}{2cm}
 \usepackage{bm}
+\DeclareMathSymbol{,}{\mathord}{letters}{"3B} % , als Dezimalkomma verwenden
 %---------------------------------------------------------
 \usepackage{hyperref} % enable clickable links to sections, figures, etc. 
 \PassOptionsToPackage{unicode}{hyperref}
@@ -201,6 +202,15 @@ pdfborder = {0 0 0}
 \input{chapters/Theorie.tex}
 \clearpage
 
+\section{Aufbau und Erwartung an die Messergebnisse}
+\label{sec:Aufbau}
+\input{chapters/Aufbau.tex}
+\clearpage
+
+\section{Datenaufnahme und Pre-Processing}
+\label{sec:Datenaufnahme und Pre-Processing}
+\input{chapters/Datenaufnahme.tex}
+\clearpage
 %---------------------------------------------------------
 %	Acronyms
 %---------------------------------------------------------

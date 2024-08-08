@@ -2,7 +2,9 @@ import numpy as np
 import os
 from tqdm import tqdm
 from corrections import pattern_correction, lowpass
-
+from scipy.optimize import curve_fit
+from scipy.signal import correlate
+from scipy.interpolate import interp1d
 
 class Data_reduction:
     
@@ -23,17 +25,17 @@ class Data_reduction:
         else:
             self._reduced_dir = reduced_data_directory    
         if number_data is None:
-            self._n_data = len(self._get_file_path_list(self._raw_dir))
+            self._n_data = len(self._return_file_path_list(self._raw_dir))
         else:
             self._n_data = number_data
         self._sampling_time = sampling_time
-            
+        
         self.time_arr = np.arange(-5000*self._sampling_time, 5000*self._sampling_time, self._sampling_time)
         self.av_g2 = None   
             
     def data_reduction(self, repeat_calculation:bool=False) -> None:
         '''
-        Method that calculated the average g2 from the raw data and saves the result to the specified _reduced_dir.
+        Method that calculates the average g2 from the raw data and saves the result to the specified _reduced_dir.
         
         Takes: 
             - repeat_calculation: bool, optional; if True the data reduction will be done even if the reduced data already exists. Default is False.
@@ -50,8 +52,7 @@ class Data_reduction:
             if not os.path.exists(self._reduced_dir):
                 os.makedirs(self._reduced_dir)
             np.savetxt(os.path.join(self._reduced_dir, filename), self.av_g2)
-    
-    # (This should probably be in its own utils class that inherits from Data_reduction, together with later integration)     
+       
     def batch_fft(self, repeat_calculation:bool=False) -> tuple:
         '''
         Method that calculates the Fourier transform of the average g2 data. 
@@ -70,15 +71,107 @@ class Data_reduction:
         freq = np.fft.rfftfreq(len(self.av_g2), self._sampling_time)
         return freq, fft_amplitude
     
+    def integrate(self, return_infodoct:bool=False, plot_fits:bool=False):
+        '''
+        Method that calculates the integral of the bunching peak in the average g2 data and its error. The error on the integral is calculated by shifting the bunching peak to different positions, fitting and integrating the fit for each shift. 
+        The standard deviation of these integrals is the error on the integral.
+        The fitting function is a convolution of the correlated mean pulse shape and a Gaussian smooting kernel that contains information about the time resolution of the measurement.
+        
+        Takes: 
+            - return_infodict: bool, optional; if True additional information will be returned. Default is False. 
+            - plot_fits: bool, optional; if True some fits will be plotted for debugging purposes. Default is False.
+            
+        Returns:     
+            - If return_infodict, a dictionary containing the following will be returned:
+                - integral: tuple, the integral of the bunching peak and its error.
+                - fit_params: list, contains integral fit parameters and errors. fit_params[i] = (popt[i], pcov[i,i]**0.5) where i is amplitude, x_shift, sigma.
+                - lf_pattern: np.array, the lowpass filter pattern that was subtracted from the average g2 data.
+                - shifts: np.array, the shifts relative to the peak position that were used for the error calculation.
+                - err_integrals: np.array, the integrals of the bunching peak for each shift.
+        '''
+        # ----------- (Changing these values will need changes in for loop!) -------------
+        fitting_width = 100 # fit data in +/- 100 bins (160ns) around peak
+        integration_width = 25  # integrate data +/- 25 bins (40ns) around peak
+        # --------------------------------------------------------------------------------
+        self._set_correlated_pulse_function() # Sets self.corr_func, needed for fitting
+        g2, t = self.av_g2, self.time_arr
+        lf_pattern = lowpass(g2, 0.75e-3)
+        g2 = g2 - lf_pattern
+        peak_pos = np.argmax(g2)
+        # Cut peak from data
+        t_fit = t[peak_pos-fitting_width:peak_pos+fitting_width]
+        g2_fit = g2[peak_pos-fitting_width:peak_pos+fitting_width]
+        
+        # ----------------- Fit and integration of bunching peak -------------------------
+        p0 = [3e-6, t[peak_pos], 1e-9]
+        popt, pcov  = curve_fit(self._fit_func, t_fit, g2_fit, p0=p0)
+        fit = self._fit_func(t[peak_pos-25: peak_pos+25], *popt)
+        integral = np.trapz(fit, dx=self._sampling_time)
+
+        if plot_fits:
+            import matplotlib.pyplot as plt
+            cmap = plt.get_cmap('viridis')
+            fig,ax = plt.subplots(figsize=(10,5))  
+            ax.plot(t*1e9, g2)
+            ax.plot(t_fit*1e9, self._fit_func(t_fit, *popt), color='r')
+            ax.set(xlabel='Time [ns]', ylabel='g2')
+        # -------------------- Get error on integral -------------------------------------
+        # Array of all shifts relative to peak_pos in bins. Centers around peak_pos so that shift_range ~ [-4000:peak_pos_bin-2*fitting_width, peak_pos_bin+2*fitting_width:4000]. This way the region around peak_pos is always excluded.
+        # peak_pos_bin is the index of the peak in g2 and not its time bin. It's equal to peak_pos-5000 as len(g2)=10000
+        shift_range = np.append(np.flip(np.arange(peak_pos-5000-2*fitting_width, -4000, -50)), np.arange(peak_pos-5000+2*fitting_width, 4000,50)).astype(int)
+        # Start integration for all shifts in shift_range
+        I = np.zeros_like(shift_range, dtype=float) # Array where I[n] is the integral for n=shift_range[n]
+        for n, shift in enumerate(shift_range):
+            # Get start and stop indices for fit for each shift
+            start_index = len(t)//2 + shift
+            stop_index = start_index + 2*integration_width
+            # Make array of size 2*fitting_width, place fit at centre, add to g2 -> shift_g2: 
+            fit_arr = np.zeros(200)
+            fit_arr[75:125] = fit
+            shift_g2 = np.copy(g2[start_index-75:stop_index+75]) # Needed, else g2 is modified
+            shift_g2 += fit_arr
+            
+            # Fitting + Integration: 
+            peak_pos = t[start_index-75:stop_index+75][np.argmax(shift_g2)] # peak position of shifted fit in s, used for fit
+            popt_err, _ = curve_fit(self._fit_func, t[start_index-75:stop_index+75], shift_g2, p0=[2e-6, peak_pos, 2e-9])
+            I[n] = np.trapz(self._fit_func(t[start_index:stop_index], *popt_err), dx=self._sampling_time)
+            if plot_fits and n%5==0:
+                ax.plot(t[start_index-75:stop_index+75]*1e9, shift_g2, color=cmap(n/len(shift_range)))
+                ax.plot(t[start_index:stop_index]*1e9, self._fit_func(t[start_index:stop_index], *popt_err), color='k', linestyle='--')
+        self.integral = integral, np.std(I)
+        if return_infodoct:
+            return {'integral': (integral, np.std(I)), 'fit_params': [(popt[i], pcov[i,i]**0.5) for i in range(3)], 'lf_pattern': lf_pattern, 'shifts': shift_range, 'err_integrals': I}
+
+            
+    def _fit_func(self, x, amplitude, x_shift, sigma):
+        '''
+        Helper method that contains the fitting function for the bunching peak.
+        '''
+        f = amplitude*self._corr_func(x - x_shift) # Interpolated, correlated mean pulse shape
+        g = np.exp(-(np.arange(-25e-9,25e-9,self._sampling_time))**2/(2*sigma**2)) # Gaussian smoothing kernel
+        return np.convolve(f,g,mode='same')
+    
+    def _set_correlated_pulse_function(self) -> None:
+        '''
+        Helper method that sets the variable self._corr_func, which is the correlated, interpolated mean pulse shape. Used as a part in fitting the g2 data.
+        '''
+        shape0, shape1 = self._return_mean_pulseshapes()
+        pulse = correlate(shape1[:,1], shape0[:,1], mode='same')
+        # Normalisation and shifting the peak to t=0 for easier fitting:
+        pulse= pulse/np.max(pulse) 
+        x = np.arange(0,211)*1e-9
+        x = x - x[np.argmax(pulse)]
+        # Interpolation:
+        self._corr_func = interp1d(x, pulse, fill_value=0.0, kind='linear', bounds_error=False)
+        
     def _set_average_g2(self) -> None:
         ''' 
         Helper method that handles the data reduction of the correlation data. This includes the pattern correction, lowpass filter, normalisation and the weighted average.
-        This method assumes the data is named 'measurement_XXXXX.fcorr' where XXXXX is the number of the data. 
         '''
         sum = np.zeros(10000)
         weight_sum = 0
         # Take the first n_data files in the raw data directory (or all if n_data is None):
-        file_path_list = self._get_file_path_list(self._raw_dir)[:self._n_data]
+        file_path_list = self._return_file_path_list(self._raw_dir)[:self._n_data]
         if os.path.splitext(file_path_list[0])[1] == '.npy':
             use_npy = True
         else:
@@ -94,10 +187,11 @@ class Data_reduction:
             weight_sum += weight
         average_g2 = sum/weight_sum
         self.av_g2 = lowpass(average_g2)
-
-    def _get_file_path_list(self, directory) -> int:
+        
+    
+    def _return_file_path_list(self, directory) -> int:
         ''' 
-        Helper mehtod that returns a list of all paths to files in a given directory. 
+        Helper method that returns a list of all paths to files in a given directory. 
         '''
         return [os.path.join(directory, f) for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
     
