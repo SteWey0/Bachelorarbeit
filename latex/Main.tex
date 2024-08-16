@@ -1,5 +1,5 @@
 \documentclass[11pt,a4paper,twoside,headsepline,numbers=noenddot,toc=bibliography,cleardoublepage=empty,parskip=half,DIV=calc,BCOR=6mm,pagesize=pdftex]{article}
-
+% \documentclass[11pt, twoside, a4paper]{report}
 
 
 %---------------------------------------------------------
@@ -19,7 +19,7 @@
 \usepackage[german]{babel}
 \usepackage{titlepage} % included in the archive and does some styling
 \usepackage[absolute]{textpos}
-\usepackage[separate-uncertainty = true]{siunitx} % enable easy SI units with \SI{VALUE}{\meter}
+%\usepackage[separate-uncertainty = true]{siunitx} % enable easy SI units with \SI{VALUE}{\meter}
 % Note: errors are written like this \SI{10(1)}{\meter} will show up as (10 ± 1) m
 
 \usepackage{subcaption} % To have multiple plots side by side
@@ -34,7 +34,7 @@
 \usepackage[acronym]{glossaries} % creates list of acronyms for you and handles everything
 
 % Make acronyms and tell it the file with the acronym definitions
-\makenoidxglossaries
+%\makenoidxglossaries
 \input{chapters/Acronyms}
 
 % Define some colors for code 
@@ -81,7 +81,7 @@
 \usepackage{upgreek}
 \usepackage{titlesec}
 \usepackage{physics} % adds easy derivatives etc. 
-\AtBeginDocument{\RenewCommandCopy\qty\SI} % dont know why
+%\AtBeginDocument{\RenewCommandCopy\qty\SI} % dont know why
 \usepackage{amssymb} % more symbols
 \usepackage{amsmath} %enables align environment
 \usepackage{multirow}
@@ -95,34 +95,35 @@
     % right=20mm,
 	top=35mm,
     }
-    \defcaptionname*{german}{\subsectionautorefname}{section}
-    \defcaptionname*{german}{\subsubsectionautorefname}{section}
-    
-    % Declare new commands
-    \newcommand{\Orafol}{Orafol SC 943}
-    \newcommand{\gammapy}{\textit{gammapy}}
-    
-    
-    
-    \usepackage{eurosym} % offers euro symbol
-    % Declare new SI units
-    \DeclareSIUnit{\sieuro}{\mbox{\euro}} % Euro
-    \DeclareSIUnit{\inch}{\mbox{''}}
-    \DeclareSIUnit{\adc}{\mbox{ADC-counts}}
-\DeclareSIUnit{\sample}{\mbox{S}} 
-\DeclareSIUnit{\pe}{\mbox{p.e.}} 
-\DeclareSIUnit{\gauss}{G}
+\defcaptionname*{german}{\subsectionautorefname}{Abschnitt}
+\defcaptionname*{german}{\subsubsectionautorefname}{Abschnitt}
+
+% Declare new commands
+\newcommand{\Orafol}{Orafol SC 943}
+\newcommand{\gammapy}{\textit{gammapy}}
 
 
 
-\usepackage[separate-uncertainty = true]{siunitx}
+% \usepackage{eurosym} % offers euro symbol
+% % Declare new SI units
+% \DeclareSIUnit{\sieuro}{\mbox{\euro}} % Euro
+% \DeclareSIUnit{\inch}{\mbox{''}}
+% \DeclareSIUnit{\adc}{\mbox{ADC-counts}}
+% \DeclareSIUnit{\sample}{\mbox{S}} 
+% \DeclareSIUnit{\pe}{\mbox{p.e.}} 
+% \DeclareSIUnit{\gauss}{G}
+
+
+
+%\usepackage[separate-uncertainty = true]{siunitx}
 
 % Use biblatex
 \usepackage[backend=biber,
 natbib=true,
 maxcitenames = 2,
 maxbibnames = 5,
-minbibnames = 4]{biblatex}
+minbibnames = 4, 
+sorting=none]{biblatex}
 
 \usepackage{csquotes}
 
@@ -135,7 +136,6 @@ minbibnames = 4]{biblatex}
 \usepackage[textsize=tiny]{todonotes}
 \setlength{\marginparwidth}{2cm}
 \usepackage{bm}
-\DeclareMathSymbol{,}{\mathord}{letters}{"3B} % , als Dezimalkomma verwenden
 %---------------------------------------------------------
 \usepackage{hyperref} % enable clickable links to sections, figures, etc. 
 \PassOptionsToPackage{unicode}{hyperref}
@@ -151,7 +151,6 @@ pdfborder = {0 0 0}
 
 \begin{document}	
 \pagestyle{empty}
-\selectlanguage{german}
 
 %---------------------------------------------------------
 %	Titlepage
@@ -188,7 +187,7 @@ pdfborder = {0 0 0}
 \clearpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
-
+ 
 %---------------------------------------------------------
 %	Your Work
 %---------------------------------------------------------
@@ -210,6 +209,11 @@ pdfborder = {0 0 0}
 \section{Datenaufnahme und Pre-Processing}
 \label{sec:Datenaufnahme und Pre-Processing}
 \input{chapters/Datenaufnahme.tex}
+\clearpage
+
+\section{Analyse der Daten}
+\label{sec:Analyse}
+\input{chapters/Analyse.tex}
 \clearpage
 %---------------------------------------------------------
 %	Acronyms
@@ -245,9 +249,9 @@ pdfborder = {0 0 0}
 %	Bibliography
 %---------------------------------------------------------
 
-\clearpage
-\mbox{}
-\clearpage
+% \clearpage
+% \mbox{}
+% \clearpage
 
 \newgeometry{
 	%a4paper,
