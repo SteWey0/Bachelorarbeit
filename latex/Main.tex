@@ -185,6 +185,8 @@ pdfborder = {0 0 0}
 % Generate 
 \tableofcontents
 \clearpage
+\mbox{}
+\clearpage
 \pagenumbering{arabic}
 \setcounter{page}{1}
  
@@ -194,27 +196,37 @@ pdfborder = {0 0 0}
 % This is where your work comes in 
 
 % -------------------------------
-
+\listoftodos \clearpage
 % It is recommended, to import your chapters from a master file for easier management
 \section{Theorie}
 \label{sec:Theorie}
 \input{chapters/Theorie.tex}
+\clearpage
+\mbox{}
 \clearpage
 
 \section{Aufbau und Erwartung an die Messergebnisse}
 \label{sec:Aufbau}
 \input{chapters/Aufbau.tex}
 \clearpage
+\mbox{}
+\clearpage
 
 \section{Datenaufnahme und Pre-Processing}
 \label{sec:Datenaufnahme und Pre-Processing}
 \input{chapters/Datenaufnahme.tex}
+\clearpage
+\mbox{}
 \clearpage
 
 \section{Analyse der Daten}
 \label{sec:Analyse}
 \input{chapters/Analyse.tex}
 \clearpage
+\mbox{}
+\clearpage
+
+\todo{Fürs Fazit: Schreiben warum faltung als fitfunk gut geeignet ist}
 %---------------------------------------------------------
 %	Acronyms
 %---------------------------------------------------------

@@ -64,7 +64,7 @@ Ein Beispiel für die unnormierte Funktion $G^{(2)}$ einer einzelnen Datei ist i
     \label{fig:G2(tau)}
 \end{figure}
 Es ist ersichtlich, dass die Funktion stark verrauscht ist und der Bunching Peak nicht auszumachen ist. 
-Die in \autoref{ssec:Intensitäteninterferometrie} bereits erwähnte Nowendigkeit der Mittelung über viele Daten, d. h. lange Zeiten, um die Form von $g^{(2)}$ bestimmen zu können, ist daher deutlich sichtbar. 
+Die in \autoref{ssec:Intensitätsinterferometrie} bereits erwähnte Nowendigkeit der Mittelung über viele Daten, d. h. lange Zeiten, um die Form von $g^{(2)}$ bestimmen zu können, ist daher deutlich sichtbar. 
 
 \subsection{Mittelung der Daten und Filter}
 \label{ssec:mittelung und filter}
@@ -82,21 +82,21 @@ Der Bunching Peak bei $\tau\approx 0$ ist nach Mittelung der Daten bereits sicht
 Allerdings sind durch die Mittelung weitere Artefakte ersichtlich geworden. 
 Bereits in den korrelierten Einzeldateien ist eine Struktur in den Daten zu erkennen, welche das Signal überlagert. 
 Nach der Mittelung ist diese nun besonders deutlich, was darauf hinweist, dass sie nicht von rein statistischer Natur ist, sondern tatsächlich zwischen den Kanälen korreliert ist. 
-Das etwa $12\,\mathrm{\mu s}$ breite Störsignal kommt von der Spannungsversorgung der Xenonlampe \cite{zmijaOpticalIntensityInterferometry2021}, liegt daher in beiden Kanälen zugleich vor und wird deshalb durch die Korrelation und Mittelung verstärkt. 
+Das etwa $12\,\mathrm{\mu s}$ breite Störsignal wird von der Spannungsversorgung der Xenonlampe erzeugt \cite{zmijaOpticalIntensityInterferometry2021}, liegt daher in beiden Kanälen zugleich vor und wird deshalb durch die Korrelation und Mittelung verstärkt. 
 Da es aber mehrere Größenordnungen breiter ist als der Bunching Peak und diesen daher kaum beeinflusst, wird es in diesem Abschnitt erst einmal vernachlässigt. 
 In einem späteren Abschnitt zur Integration des Peaks wird auf eine Methode eingegangen, dieses Störsignal zu entfernen. \\
 \begin{figure}[h]
     \centering
     \includegraphics{images/Datenaufnahme/G2_vs_g2.pdf}
-    \caption{Dargestellt sind der Unterschied zwischen $G^{(2)}(\tau)$ und der normierten Funktion $g^{(2)}(\tau)$ nach Mittelung über 10000 Dateien, bei der zudem die \glqq pattern correction\grqq\;und der Tiefpass angewandt worden sind. Es ist deutlich erkennbar, dass die angewandten Methoden zu einer starken Verbesserung des Signal-Rausch-Verhältnisses geführt haben. }
+    \caption{Dargestellt ist der Unterschied zwischen $G^{(2)}(\tau)$ und der normierten Funktion $g^{(2)}(\tau)$ nach Mittelung über 10000 Dateien, bei der zudem die \glqq pattern correction\grqq\;und der Tiefpass angewandt worden sind. Es ist deutlich erkennbar, dass die angewandten Methoden zu einer starken Verbesserung des Signal-Rausch-Verhältnisses geführt haben. }
     \label{fig:gemittelte G2 vs g2}
 \end{figure}
 
 Weiterhin ist durch Zoom in die Daten oder eine Fouriertransformation dieser ein 8-Bin-periodisches Muster zu erkennen, welches dafür verantwortlich ist, dass die $G^{(2)}$-Funktion ein breites Band an Werten annimmt. 
-Dieses von den ADC-Karten kommende Muster stört den Verlauf des Bunching Peaks zudem in beträchtlicher Weise, da es sich auf der selben Zeitskala wie der Peak selbst befindet. 
+Dieses von den ADC-Karten kommende Muster stört den Verlauf des Bunching Peaks in beträchtlicher Weise, da es sich auf der selben Zeitskala wie der Peak selbst befindet. 
 Da das Störsignal von den beiden ADC-Karten gleichzeitig ausgeht, ist dieses korreliert und daher besonders dominant in der abgebildeten $G^{(2)}$-Funktion.
 Um das Störsignal zu entfernen, wird eine von der Arbeitsgruppe geschriebene \glqq pattern correction\grqq\;angewandt, welche in den ersten 4000 Bins (d. h. im Intervall $\tau\in[-8000,-1600]\,\mathrm{ns}$) jeweils 8 Bins mittelt und die Daten anschließend durch das so ermittelte Muster teilt. 
-Da das Muster sowohl das eigentliche 8-Bin-periodische Muster, als auch den Offset der $G^{(2)}$-Funktion, wie er in \autoref{eq:G2 normalisierung} definiert ist, enthält, wird diese durch die Division automatisch auch normiert. 
+Da das Muster sowohl das eigentliche 8-Bin-periodische Muster, als auch den Offset der $G^{(2)}$-Funktion (vgl. \autoref{eq:G2 normalisierung}) enthält, wird diese durch die Division automatisch auch normiert. 
 Der Schritt der \glqq pattern correction\grqq\;wird für jede Datei separat vor der Bildung des Mittelwertes angewandt. \\
 Nach diesen Schritten wird auf die gemittelte $g^{(2)}$-Funktion noch ein digitaler Tiefpass 2. Ordnung mit einer Grenzfrequenz von 200\,MHz angewandt, um weitere hochfrequente Störsignale zu entfernen. 
 Die nach erwähnten Korrekturen und der angewandten Mittelung erhaltene Funktion $g^{(2)}(\tau)$ ist in \autoref{fig:gemittelte G2 vs g2} unten abgebildet. 

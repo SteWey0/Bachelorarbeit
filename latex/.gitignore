@@ -31,7 +31,7 @@
 *-blx.aux
 *-blx.bib
 *.run.xml
-
+*.bbl-SAVE-ERROR
 ## Build tool auxiliary files:
 *.fdb_latexmk
 *.synctex
