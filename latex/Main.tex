@@ -166,18 +166,6 @@ pdfborder = {0 0 0}
 \clearpage
 \pagestyle{plain}
 
-%---------------------------------------------------------
-%	Abstracts
-% ---------------------------------------------------------
-
-% \selectlanguage{german}
-% \input{chapters/abstract.tex}
-% \clearpage
-% \mbox{}
-% \clearpage
-
-% % Set the language for the rest of the work
-% \selectlanguage{german}
 
 %---------------------------------------------------------
 %	Table of Contents
@@ -198,6 +186,13 @@ pdfborder = {0 0 0}
 % -------------------------------
 \listoftodos \clearpage
 % It is recommended, to import your chapters from a master file for easier management
+\section{Einleitung}
+\label{sec:Einleitung}
+\input{chapters/Einleitung.tex}
+\clearpage
+\mbox{}
+\clearpage
+
 \section{Theorie}
 \label{sec:Theorie}
 \input{chapters/Theorie.tex}
@@ -226,7 +221,13 @@ pdfborder = {0 0 0}
 \mbox{}
 \clearpage
 
-\todo{Fürs Fazit: Schreiben warum faltung als fitfunk gut geeignet ist}
+\section{Zusammenfassung und Fazit}
+\label{sec:Fazit}
+\input{chapters/Fazit.tex}
+\clearpage
+\mbox{}
+\clearpage
+
 %---------------------------------------------------------
 %	Acronyms
 %---------------------------------------------------------
@@ -261,10 +262,6 @@ pdfborder = {0 0 0}
 %	Bibliography
 %---------------------------------------------------------
 
-% \clearpage
-% \mbox{}
-% \clearpage
-
 \newgeometry{
 	%a4paper,
 	left=40mm,
@@ -288,26 +285,25 @@ title={Bibliografie}
 
 % \input{chapters/acknowledgements.tex}
 
-
-% \clearpage
 %---------------------------------------------------------
 %	Eigenständigkeitserklärung / Declaration of independence
 %---------------------------------------------------------
 
 % \selectlanguage{german}
-% \section*{Eigenständigkeitserklärung}
-% Hiermit versichere ich, Stephen Weybrecht (22967286), die vorgelegte Arbeit selbstständig und ohne unzulässige Hilfe Dritter sowie ohne die Hinzuziehung nicht offengelegter und insbesondere nicht zugelassener Hilfsmittel angefertigt zu haben. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen und wurde auch von keiner anderen Prüfungsbehörde bereits als Teil einer Prüfung angenommen.\\
+\clearpage
+\section*{Eigenständigkeitserklärung}
+Hiermit versichere ich, Stephen Weybrecht (22967286), die vorgelegte Arbeit selbstständig und ohne unzulässige Hilfe Dritter sowie ohne die Hinzuziehung nicht offengelegter und insbesondere nicht zugelassener Hilfsmittel angefertigt zu haben. Die Arbeit hat in gleicher oder ähnlicher Form noch keiner anderen Prüfungsbehörde vorgelegen und wurde auch von keiner anderen Prüfungsbehörde bereits als Teil einer Prüfung angenommen.\\
 
-% Die Stellen der Arbeit, die anderen Quellen im Wortlaut oder dem Sinn nach entnommen wurden, sind durch Angaben der Herkunft kenntlich gemacht. Dies gilt auch für Zeichnungen, Skizzen, bildliche Darstellungen sowie für Quellen aus dem Internet.\\
+Die Stellen der Arbeit, die anderen Quellen im Wortlaut oder dem Sinn nach entnommen wurden, sind durch Angaben der Herkunft kenntlich gemacht. Dies gilt auch für Zeichnungen, Skizzen, bildliche Darstellungen sowie für Quellen aus dem Internet.\\
 
-% Mir ist insbesondere bewusst, dass die Nutzung künstlicher Intelligenz verboten ist, sofern diese nicht ausdrücklich als Hilfsmittel von dem Prüfungsleiter bzw. der Prüfungsleiterin zugelassen wurde. Dies gilt insbesondere für Chatbots (insbesondere ChatGPT) bzw. allgemein solche Programme, die anstelle meiner Person die Aufgabenstellung der Prüfung bzw. Teile derselben bearbeiten könnten.\\
+Mir ist insbesondere bewusst, dass die Nutzung künstlicher Intelligenz verboten ist, sofern diese nicht ausdrücklich als Hilfsmittel von dem Prüfungsleiter bzw. der Prüfungsleiterin zugelassen wurde. Dies gilt insbesondere für Chatbots (insbesondere ChatGPT) bzw. allgemein solche Programme, die anstelle meiner Person die Aufgabenstellung der Prüfung bzw. Teile derselben bearbeiten könnten.\\
 
-% \vspace{10cm}
-% \begin{flushleft}
-% \makebox[.4\textwidth]{\hrulefill}\hfill \makebox[.4\textwidth]{\hrulefill}\\
-% \makebox[.4\textwidth]{Ort, Datum}\hfill
-% \makebox[.4\textwidth]{Unterschrift}\\
-% \end{flushleft}
+\vspace{10cm}
+\begin{flushleft}
+\makebox[.4\textwidth]{\hrulefill}\hfill \makebox[.4\textwidth]{\hrulefill}\\
+\makebox[.4\textwidth]{Ort, Datum}\hfill
+\makebox[.4\textwidth]{Unterschrift}\\
+\end{flushleft}
 
 
 \end{document}

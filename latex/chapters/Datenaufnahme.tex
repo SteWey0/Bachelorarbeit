@@ -1,7 +1,7 @@
 In diesem Abschnitt soll auf die Datenaufnahme sowie alle nötigen Schritte der Datenverarbeitung bis zur fertigen $g^{(2)}(\tau)$-Funktion eingegangen werden. 
 Dafür werden zuerst die Datenaufnahme und dafür nötige Kalibrationsverfahren erläutert. 
-In diesem Zuge wird zudem auf das Aussehen der aufgenommenen Daten (Waveforms) eingegangen. 
-Anschließend werden korrelierte Einzeldateien betrachtet und es wird verdeutlicht, warum eine Mittelung vieler Waveforms unumgäglich ist. 
+In diesem Zuge wird zudem auf das Aussehen der aufgenommenen Daten eingegangen. 
+Anschließend werden korrelierte Einzeldateien betrachtet und es wird verdeutlicht, warum eine Mittelung über viele Einzeldateien unumgäglich ist. 
 Zuletzt werden angewandte Korrekturen und Filter angesprochen sowie verdeutlicht, wie die Mittelung der Daten erfolgt. 
 
 \subsection{Datenaufnahme und Waveforms}
@@ -16,27 +16,29 @@ Die Aufnahme der Daten erfolgt durch ein von der Arbeitsgruppe geschriebenes Pro
 In der GUI wird für jede verwendete Digitalisierungskarte ein Fenster erstellt, in dem Einstellungen für die jeweilige Karte vorgenommen werden können. 
 Nach dem Erstellen eines Projekts können in dem mit \emph{1} markierten Bereich in \autoref{fig:Screenshot GUI} Einstellungen für die ADC-Karte vorgenommen werden. 
 Es wird mit einem Kanal je Karte gemessen und die Samplingzeit beträgt $1{,}6$\,ns bei einer Dateigröße von 2 Gigasamplen. 
-Der zu digitalisierende Spannungsbereich wird passend zu den in \emph{4} abgebildeten Waveforms auf 200\,mV gesetzt. 
+Der zu digitalisierende Spannungsbereich wird auf 200\,mV gesetzt, sodass die in \emph{4} abgebildeten Waveforms den dargestellten Digitalisierungsbereich von $-128\,\mathrm{ADC}$ nicht überschreiten. 
 Clock und Trigger werden extern durch das White Rabbit System gegeben. 
 Die genannten Einstellung werden größtenteils vor der Messung automatisch mit dem Button \glqq Init new measurement\grqq\;gesetzt. \\
 Vor Start der Messung müssen zwei Kalibrationsschritte für jeden Kanal gemacht werden. 
-Zuerst wird unter \emph{2} eine Offset-Kalibration durchgeführt, indem \glqq Measure\grqq\;und \glqq Calc Offset\grqq\;gewählt werden. 
+Zuerst wird unter \emph{2} eine Offset-Messung durchgeführt, indem \glqq Measure\grqq\;und \glqq Calc Offset\grqq\;gewählt werden. 
 Diese wird ohne Beleuchtung und mit ausgeschalteter Hochspannung durchgeführt. 
-Das Programm bestimmt diesen vom PMT abhängigen Offset und entfernt diesen, sodass dieser die Korrelation nicht beeinflusst \cite{zmijaOpticalIntensityInterferometry2021}. 
-Anschließend wird bei eingeschalteter Hochspannung und niedriger Photonenrate eine Raten-Kalibration durchgeführt, sodass gemessene Spannungen in Photonenraten umgerechnet werden können. 
-Dies ist nötig, da aufgrund der hohen Raten bei der Messung nicht Einzelphotonepulse, sondern ganze Waveforms miteinander korreliert werden. 
-Für die Kalibration wird für jeden Kanal die mittlere Pulsform der PMT-Pulse bestimmt und gespeichert. 
+Das Programm bestimmt diesen vom Verstärker abhängigen Offset und speichert diesen zur späteren Entfernung \cite{zmijaOpticalIntensityInterferometry2021}. 
+Anschließend wird bei eingeschalteter Hochspannung und niedriger Photonenrate eine PMT-Puls-Kalibration durchgeführt, sodass gemessene Spannungen in Photonenraten umgerechnet werden können. 
+Die Kalibration ist nötig, da aufgrund der hohen Raten bei der Messung keine Einzelphotonenpulse vorliegen, aus denen sich die Raten einfach bestimmen lassen würden, sondern die Pulse überlappen.
+Für die Kalibration wird für jeden Kanal die mittlere Pulsform der PMT-Pulse bestimmt und gespeichert, woraus anschließend eine druchschnittliche Ladung pro Puls und damit die Rate berechnet werden kann.
+Die Ratenanzeige in \emph{5} ist nützlich zur leichteren Justierung des optischen Aufbaus (Maximierung der Rate), sowie bei der Beobachtung eines Sterns zum Vergleich mit Theoriewerten.
+Für die vorliegende Arbeit ist allerdings hauptsächlich relevant, dass während der Kalibration die mittlere PMT-Pulsform gespeichert wird.
 Es wird erwartet, dass diese einen bedeutenden Einfluss auf die Form der $g^{(2)}$-Funktion hat, da die Photonenpulse deutlich breiter sind als die einzelnen $1{,}6$\,ns-Bins, was zu einer Korrelation benachbarter Bins führt \cite{zmijaOpticalIntensityInterferometry2021}. 
 Aus den gemessenen Daten wird bestimmt, wie viel Ladung ein Photon, das auf einen PMT trifft, durchschnittlich freisetzt, woraus anschließend die in \emph{5} gezeigten Photonenraten in MHz bestimmt werden können. \\
 Nach diesen Kalibrationsschritten kann die Messung gestartet werden, woraufhin synchronisiert durch den Trigger des White Rabbit Systems 2$\cross$2\,GS Daten aufgenommen werden. 
 Dies entspricht einer Messdauer von $3{,}436\,\mathrm{s}$. 
 Nach Ablauf von 4\,s startet anschließend der nächste Trigger eine Messung von 2$\cross$2\,GS, sodass idealerweise ein Duty-Cycle von 85{,}9\% erreicht wird \cite{zmijaFirstIntensityInterferometry2023}. 
 Da jedes Sample einem 8\,bit ADC-Wert entspricht, erreicht die Messung also eine Datenrate von 2$\cross$2\,GB alle 4\,s, was erklärt, weshalb die Daten erst gespeichert und anschließend offline korreliert werden. 
-Zur Veranschaulichung ist in \autoref{fig:Offest_Rate Kalibration} aufgezeigt, wie eine typische Waveform zur Offset- bzw. Raten-Kalibration und zur Messung aussieht. 
+Zur Veranschaulichung ist in \autoref{fig:Offest_Rate Kalibration} aufgezeigt, wie eine typische Waveform zur Offset-Messung, Puls-Kalibration und zur Messung aussieht. 
 \begin{figure}[h]
     \centering
     \includegraphics{images/Datenaufnahme/Kalibration.pdf}
-    \caption{Abgebildet ist der Ausschnitt einer Waveform für die Offset Kalibration (ausgeschaltete Hochspannung und Beleuchtung), Raten-Kalibration (Hochspannung und Licht an, niedrige Photonenrate) und für die Messung.}
+    \caption{Abgebildet ist der Ausschnitt einer Waveform für die Offset-Messung in Orange (ausgeschaltete Hochspannung und Beleuchtung), Puls-Kalibration in Blau (Hochspannung und Licht an, niedrige Photonenrate) und für die Messung in Grau.}
     \label{fig:Offest_Rate Kalibration}
 \end{figure}
 
@@ -53,7 +55,7 @@ Damit entspricht jeder Wert von $G^{(2)}(\tau)$ der unnormierten zeitlichen Phot
 Die korrelierten Einzeldateien können anschließend für die weitere Datenanalyse gespeichert werden, da diese deutlich kleiner (im Bereich weniger kB) sind als die Rohdaten. 
 Um aus einer bestimmten $G^{(2)}$-Funktion die normierte zeitliche Korrelationsfunktion zu erhalten, wird diese durch ihren Mittelwert weit außerhalb des Bunching Peaks geteilt:
 \begin{equation}
-    g^{(2)}(\tau) = \frac{G^{(2)}(\tau)}{\overline{G^{(2)}(\tau\gg\tau_c)}}
+    g^{(2)}(\tau) = \frac{G^{(2)}(\tau)}{\overline{G^{(2)}(\tau\gg\tau_{\mathrm{c}})}}
     \label{eq:G2 normalisierung}
 \end{equation}
 Ein Beispiel für die unnormierte Funktion $G^{(2)}$ einer einzelnen Datei ist in \autoref{fig:G2(tau)} dargestellt. 
@@ -64,7 +66,7 @@ Ein Beispiel für die unnormierte Funktion $G^{(2)}$ einer einzelnen Datei ist i
     \label{fig:G2(tau)}
 \end{figure}
 Es ist ersichtlich, dass die Funktion stark verrauscht ist und der Bunching Peak nicht auszumachen ist. 
-Die in \autoref{ssec:Intensitätsinterferometrie} bereits erwähnte Nowendigkeit der Mittelung über viele Daten, d. h. lange Zeiten, um die Form von $g^{(2)}$ bestimmen zu können, ist daher deutlich sichtbar. 
+Die in \autoref{ssec:Intensitätsinterferometrie} bereits erwähnte Notwendigkeit der Mittelung über viele Daten, d. h. lange Zeiten, um die Form von $g^{(2)}$ bestimmen zu können, ist daher deutlich sichtbar. 
 
 \subsection{Mittelung der Daten und Filter}
 \label{ssec:mittelung und filter}
@@ -72,7 +74,7 @@ Wie bereits im vorangegangenen Abschnitt ersichtlich wurde, ist eine Mittelung v
 Hierbei wird der Ansatz eines gewichteten Mittelwerts gewählt, da nicht jede der etwa $3{,}4\,\mathrm{s}$ langen Dateien statistisch gleich aussagekräftig ist. 
 So weisen manche der Messabschnitte höhere Photonenraten auf als andere (vgl. dazu \autoref{fig:Screenshot GUI}, Kasten \emph{5}). 
 Unter der Annahme, dass ein Großteil des Rauschens in der $G^{(2)}$-Funktion statistischen Fluktuationen entspricht, wird erwartet, dass das Rauschen für höhere Photonenraten abnimmt. 
-Dies bedeutet, dass Dateien mit höheren Raten und geringerer Schwankung stärker gewichtet werden sollten, als jede mit geringeren Photonenraten. 
+Dies bedeutet, dass Dateien mit höheren Raten und geringerer Schwankung stärker gewichtet werden sollten, als jene mit geringeren Photonenraten. 
 Um dies zu bewerkstelligen, wird von jeder Datei $G^{(2)}_i$ die Standardabweichung $\sigma_i$ bestimmt und anschließend der folgende gewichtete Mittelwert berechnet \cite{cochranProblemsArisingAnalysis1937}:
 \begin{equation}
     \overline{G^{(2)}} = \frac{\sum_{i=0}^{n}\frac{G^{(2)}_i}{\sigma_i^2}}{\sum_{i=0}^{n} \sigma_i^{-2}}
@@ -88,10 +90,9 @@ In einem späteren Abschnitt zur Integration des Peaks wird auf eine Methode ein
 \begin{figure}[h]
     \centering
     \includegraphics{images/Datenaufnahme/G2_vs_g2.pdf}
-    \caption{Dargestellt ist der Unterschied zwischen $G^{(2)}(\tau)$ und der normierten Funktion $g^{(2)}(\tau)$ nach Mittelung über 10000 Dateien, bei der zudem die \glqq pattern correction\grqq\;und der Tiefpass angewandt worden sind. Es ist deutlich erkennbar, dass die angewandten Methoden zu einer starken Verbesserung des Signal-Rausch-Verhältnisses geführt haben. }
+    \caption{Dargestellt ist der Unterschied zwischen $G^{(2)}(\tau)$ (oben) und der normierten Funktion $g^{(2)}(\tau)$ nach Mittelung über 10000 Dateien (unten), bei der zudem die \glqq pattern correction\grqq\;und der Tiefpass angewandt worden sind. Es ist deutlich erkennbar, dass die angewandten Methoden zu einer starken Verbesserung des Signal-Rausch-Verhältnisses geführt haben. }
     \label{fig:gemittelte G2 vs g2}
 \end{figure}
-
 Weiterhin ist durch Zoom in die Daten oder eine Fouriertransformation dieser ein 8-Bin-periodisches Muster zu erkennen, welches dafür verantwortlich ist, dass die $G^{(2)}$-Funktion ein breites Band an Werten annimmt. 
 Dieses von den ADC-Karten kommende Muster stört den Verlauf des Bunching Peaks in beträchtlicher Weise, da es sich auf der selben Zeitskala wie der Peak selbst befindet. 
 Da das Störsignal von den beiden ADC-Karten gleichzeitig ausgeht, ist dieses korreliert und daher besonders dominant in der abgebildeten $G^{(2)}$-Funktion.

@@ -1,84 +1,82 @@
 Im Folgenden soll auf den verwendeten experimentellen Aufbau eingegangen werden. 
 Dafür wird dieser zuerst anhand einer Skizze erklärt. 
 Anschließend wird die bereits entwickelte Theorie auf den Aufbau bezogen und aufgezeigt, welche Abweichungen sich von der idealisierten Herangehensweise im vorangegangenen Abschnitt ergeben. 
-In diesem Zuge wird abschließend die Erwartung an die Messgröße $\tau_c$ berechnet, auf welche sich in späteren Abschnitten bezogen werden soll. \\
+In diesem Zuge wird abschließend die Erwartung an die Messgröße $\tau_{\mathrm{c}}$ berechnet, auf welche sich in späteren Abschnitten bezogen werden soll. \\
 
-Am Einfachsten lässt sich der Versuchsaufbau anhand einer vereinfachten Skizze nachvollziehen. Diese ist daher in \autoref{fig:Versuchsaufbau} dargestellt. 
+Am einfachsten lässt sich der Versuchsaufbau anhand einer vereinfachten Skizze nachvollziehen. Diese ist daher in \autoref{fig:Versuchsaufbau} dargestellt. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\linewidth]{images/Aufbau/Aufbau.pdf}
     \caption{Abgebildet ist eine vereinfachte Skizze des verwendeten Aufbaus, welche die konzeptuell wichtigsten Bestandteile darstellt.}
     \label{fig:Versuchsaufbau}
 \end{figure}
-Als Lichtquelle wird eine Xenon Lampe (\todo{lampentyp}...) gewählt. 
+Als Lichtquelle wird eine Xenon Lampe (Osram XBO 75 W/2 \cite{XBO75OSRAM}) gewählt. 
 Als Gasentladungslampe emittiert diese nach \autoref{ssec:Intensitätsinterferometrie} chaotisches Licht, welches Bunching aufweist. 
 Da nach dem van Cittert-Zernike-Theorem der Winkeldurchmesser der Lichtquelle invers proportional zur Breite von $g^{(2)}(\bm{\rho})$ ist, ist weiterhin darauf zu achten, die Ausdehnung der Lichtquelle einzuschränken, damit korrelierte Photonen am Detektor vorliegen. 
 Zu diesem Zweck ist eine kreisförmige Lochblende mit einem Durchmesser von $d=30\,\mathrm{\mu m}$ verbaut. 
 Mit der Distanz $x=1{,}75\,\mathrm{m}$ zwischen Lichtquelle und dem restlichen Aufbau ergibt sich so ein Winkeldurchmesser von $\Delta \theta \approx \frac{d}{x} = 3{,}53\,\mathrm{arcsec}$. 
-Es sei darauf hingewiesen, dass die größten Winkeldurchmesser von Sternen im Bereich von tausendstel Bogensekunden liegen \cite{hanburybrownAngularDiameters321974}, also etwa drei Größenordnungen kleiner sind, als der hier geschaffene \glqq künstliche Stern\grqq. \\
+Es sei darauf hingewiesen, dass typische Winkeldurchmesser von Sternen im Bereich von tausendstel Bogensekunden liegen \cite{hanburybrownAngularDiameters321974}, also etwa drei Größenordnungen kleiner sind, als der hier geschaffene \glqq künstliche Stern\grqq. \\
 Um dem eintretenden Lichtstrahl eine definierte Breite zu geben, wird dieser zusätzlich durch eine Lochblende mit einem Durchmesser von einem Zoll geleitet. 
-\todo{warum?}
+Weiterhin wird das einfallende Licht so auf einen Bereich beschränkt, der etwa der effektiven Größe der Photomultiplier von $23\times 23\,\mathrm{mm}$ entspricht \cite{PhotomultiplierTubeR11265U200}. \\
 Wie in \autoref{ssec:Michelson-Sterninterferometer} beschrieben, ist für eine Messung der räumlichen Kohärenz auch eine nicht verschwindende Kohärenzzeit relevant. 
 Da diese indirekt proportional zur spektralen Breite der Quelle ist, wird an dieser Stelle ein enger Bandpassfilter (Alluxa 465-2 \cite{4652OD4Ultra}) mit einer annähernd rechteckförmigen Transmissivität verbaut. 
 Dieser hat nach Herstellerangaben eine zentrale Wellenlänge von $\lambda_0 = 465\,\mathrm{nm}$ und eine Halbwertsbreite von  $\Delta\lambda = 2\,\mathrm{nm}$. 
-Anschließend wird der Strahl durch einen nicht polarisierenden 50/50 Strahlteilerwürfel (Thorlabs BS031 \cite{ThorlabsBS03150}) aufgeteilt und zum Nachweis der Photonen auf zwei Photomultiplier (PMTs) gelenkt. 
+Anschließend wird der Strahl durch einen nicht polarisierenden 50/50 Strahlteilerwürfel (Thorlabs BS031 \cite{ThorlabsBS03150}) aufgeteilt und zum Nachweis der Photonen auf zwei Photomultiplier (PMTs, Hamamatsu R11265U-200 \cite{PhotomultiplierTubeR11265U200}) gelenkt. 
 Um bei hohen Photonenraten weiterhin eine lineare Verstärkung durch die PMTs zu erhalten, werden die letzten vier Dynoden mit einer Stabilisationsspannung betrieben \cite{zmijaOpticalIntensityInterferometry2021}. 
 Als Spannungsquelle für die Hochspannung und die Stabilisationsspannung wird eine durch den Computer steuerbare Spannungsquelle (CAEN DT5533E \cite{DT5533E}) genutzt. 
-Direkt am Ausgang der Photomultiplier (\todo{pmttyp}...) werden die Pulse mit einem Verstärker (FAST ComTec TA1000B-10 \cite{TA1000BTimingAmplifier}) um den Faktor 10 verstärkt. 
+Direkt am Ausgang der Photomultiplier werden die Pulse mit einem Verstärker (FAST ComTec TA1000B-10 \cite{TA1000BTimingAmplifier}) um den Faktor 10 verstärkt. 
 Die Verstärkung direkt an den PMTs hat den Vorteil, dass Störsignale nicht vor der Verstärkung einkoppeln können, was das Signal-Rausch-Verhältnis verbessert. 
-Anschließend werden die Signale durch variable Kombinationen an Kabellänge und -modell zu Analog-Digital-Wandlern (Spectrum M4I.2212-X8 \cite{M4i2212x8Bit}) geleitet, wo diese digitalisiert werden. 
-Obwohl jede der Spektrum-Karten vier Digitalisierungskanäle unterstützt, werden zwei verschiedene und räumlich getrennte Karten genutzt, um ein Übersprechen zwischen den Kanälen zu verhindern. 
+Anschließend werden die Signale durch variable Kombinationen an Kabellänge und -modell zu Analog-Digital-Wandlern (Spectrum M4I.2212-X8 \cite{M4i2212x8Bit} und Spectrum M4I.2211-X8 \cite{M4i2211x8Bit}, gleiches Modell, lediglich unterschiedlich viele Eingangskanäle) geleitet, wo diese digitalisiert werden. 
+Obwohl die Spektrum-Karten vier bzw. zwei Digitalisierungskanäle unterstützen, werden zwei verschiedene und räumlich getrennte Karten genutzt, um ein Übersprechen zwischen den Kanälen zu verhindern. 
 Aufgrund des von Natur aus geringen Signals werden alle analogen Signale durch geschirmte Koaxialkabel geleitet, um das Einkoppeln von Störsignalen zu erschweren. 
 Um zusätzlich das Einkoppeln von störendem Licht des PCs oder sonstiger LEDs der Messgeräte zu erschweren, ist der optische Aufbau zudem durch ein Thorlabs-Röhrensystem fest verbunden, sodass nur Licht entlang der optischen Achse eindringen kann. 
-Die zeitliche Synchronisierung der Waveforms zur späteren Korrelation erfolgt durch Verwendung des White Rabbit Systems (vgl. z. B. \cite{lipinskiWhiteRabbitPTP2011}), welches direkt mit den Analog-Digital-Wandlern (ADCs) verbunden ist. 
+Die zeitliche Synchronisierung der beiden des PMT-Strom-Verläufe (Waveforms) zur späteren Korrelation erfolgt durch Verwendung des White Rabbit Systems (vgl. z. B. \cite{lipinskiWhiteRabbitPTP2011}), welches direkt mit den Analog-Digital-Wandlern (ADCs) verbunden ist. 
 Abschließend werden die Daten auf RAIDs (Areca ARC-8050T3U-12 \cite{ARC8050T3UThunderboltUSB}) zur späteren Korrelation gespeichert. \\
 Da ein Ziel dieser Arbeit ist, zu untersuchen, wie sich verschiedene Kabel auf das Integral des Bunching Peaks auswirken, soll an dieser Stelle explizit auf die verwendeten Koaxialkabel eingegangen werden. 
 Die ersten durchgeführten Messungen erfolgen mit 10 und 40\,m langen Kabeln des Typs Airborne 5 \cite{s.r.lAirborne10Coaxial}. 
 Dies entspricht den Kabeln, welche in der von der Arbeitsgruppe 2022 durchgeführten Kampagne mit den H.E.S.S.-Teleskopen genutzt wurden \cite{zmijaFirstIntensityInterferometry2023}. 
 Anschließend wurden noch Messungen mit Kabeln des Typs LMR400 durchgeführt \cite{LMR400CoaxCable}. 
-Diese weisen eine geringere Dämpfung auf als die Airborne 5 Kabel und sind daher interessant, um den Einfluss der Dämpfung auf die gemessene $\tau_c$ zu untersuchen. \\
+Diese weisen eine geringere Dämpfung auf als die Airborne 5 Kabel und sind daher interessant, um den Einfluss der Dämpfung auf das gemessene $\tau_{\mathrm{c}}$ zu untersuchen. \\
 
 Aufgrund des speziellen Aufbaus ergeben sich einige Änderungen bezüglich der im vorangegangenen Abschnitt eingeführten Theorie. 
 Auf diese soll hier eingegangen werden. 
 Wie erwähnt ist der Winkeldurchmesser der Quelle vergleichsweise groß. 
-Nach \autoref{eq:erste nulstelle von g2(rho) für lochblende} wird für die Distanz zur ersten Nullstelle der $g^{(2)}$-Funktion lediglich $\rho_0\approx3,3\,\mathrm{cm}$ erwartet. 
-Das heißt, dass am Beobachtungsort lediglich in einem Kreis mit Radius $\rho_0$ korrelierte Photonen auftreten. 
+Nach \autoref{eq:erste nulstelle von g2(rho) für lochblende} wird für die Distanz zur ersten Nullstelle der $g^{(2)}$-Funktion lediglich $\rho_0\approx3{,}3\,\mathrm{cm}$ erwartet. 
+Das heißt, dass am Beobachtungsort lediglich zwischen Punkten, die maximal $\rho_0$ voneinander entfernt sind, korrelierte Photonen auftreten. 
 Aufgrund der physischen Größe der PMTs ist es daher nicht möglich, $g^{(2)}(\rho)$ für verschiedene $\rho$ zu messen. 
 Stattdessen wird ein Mittelwert von $g^{(2)}$ in einem Intervall von $\rho\in[0,1]$ Zoll gemessen. 
 Dieses Intervall entspricht den Abständen, die korrelierte Photonen durch die Lochblende am Eingang des Strahlteilers haben können. 
-Es wird also erwartet, einen niedrigeren Wert für $g^{(2)}(\rho)$ und damit $\tau_c$ zu messen. 
+Es wird also erwartet, einen niedrigeren Wert für $g^{(2)}(\rho)$ und damit $\tau_{\mathrm{c}}$ zu messen. 
 Dies ist in \autoref{fig:räumliche koh simulation} verdeutlicht. 
 \begin{figure}[h]
     \centering
     \includegraphics{images/Aufbau/g2(rho).pdf}
-    \caption{Dargestellt ist links die $g^{(2)}$-Funktion, abhängig von der Separation $\rho$. Rechts ist das Ergebnis der Simulation abgebildet. In Blau ist $g^{(2)}$ für jeden Photonenabstand dargestellt (dies entspricht der Kurve im linken Graphen), während in Orange die simulierte Wahrscheinlichkeitsverteilung, ein Photonenpaar bei gegebenem Abstand anzutreffen, aufgetragen ist. Durch Multiplikation der beiden Kurven erhält man den Faktor, wie viel räumliche Kohärenz im Vergleich zum Maximum noch vorhanden ist. Dieser beträgt $k_s=0,62$. Links ist zudem eingezeichnet, welchem Abstand $\rho\prime$ diese Kohärenz entsprechen würde. }
+    \caption{Dargestellt ist links die $g^{(2)}$-Funktion, abhängig von der Separation $\rho$. Rechts ist das Ergebnis der Simulation abgebildet. In Blau ist $g^{(2)}$ für jeden Photonenabstand dargestellt (dies entspricht der Kurve im linken Graphen), während in Orange die simulierte Wahrscheinlichkeitsverteilung, ein Photonenpaar bei gegebenem Abstand anzutreffen, aufgetragen ist. Durch Multiplikation der beiden Kurven erhält man den Faktor, wie viel räumliche Kohärenz im Vergleich zum Maximum noch vorhanden ist. Dieser beträgt $k_\mathrm{T}=0{,}62$. Links ist zudem eingezeichnet, welchem Abstand $\rho\prime$ diese Kohärenz entsprechen würde. }
     \label{fig:räumliche koh simulation}
 \end{figure}
 Um herauszufinden, um welchen Faktor die gemessene Amplitude von der theoretischen maximalen Amplitude abweicht, wird eine von der Arbeitsgruppe geschriebene Simulation durchgeführt, die sowohl den Wert von $g^{(2)}$ für jeden Photonenabstand als auch die Wahrscheinlichkeit für diesen berücksichtigt. 
-Der Faktor, um welchen $g^{(2)}$ im Vergleich zu $g^{(2)}(0)$ verringert ist, beträgt bei gegebenem Aufbau $k_s=0,62$. 
-\todo{Wie zitiere ich diese Simulationen?}
-Über den theoretischen Verlauf der Korrelationsfunktion lässt sich durch $k_s$ auf einen effektiven Teleskopabstand $\rho\prime$ schließen, bei dem ein dünner Strahl denselben Verlust an räumlicher Kohärenz aufweist. 
+Der Faktor, um welchen $g^{(2)}$ im Vergleich zu $g^{(2)}(0)$ verringert ist, beträgt bei gegebenem Aufbau $k_\mathrm{T}=0{,}62$. 
+Über den theoretischen Verlauf der Korrelationsfunktion lässt sich durch $k_\mathrm{T}$ auf einen effektiven Teleskopabstand $\rho\prime$ schließen, bei dem ein dünner Strahl denselben Verlust an räumlicher Kohärenz aufweist. 
 Dies ist auch in \autoref{fig:räumliche koh simulation} veranschaulicht. \\
 
-Aus voriger Überlegung ist nun bekannt $\tau_c^{\mathrm{meas}} = k_s\cdot\tau_c^{th}$. 
-Um $\tau_c^{th}$ zu bestimmen, wird eine weitere Simulation von der Arbeitsgruppe verwendet. 
+Aus voriger Überlegung ist nun bekannt $\tau_{\mathrm{c}}^{\mathrm{expect}} = k_\mathrm{T}\cdot\tau_{\mathrm{c}}^{\mathrm{th}}$. 
+Um $\tau_{\mathrm{c}}^{\mathrm{th}}$ zu bestimmen, wird eine weitere Simulation von der Arbeitsgruppe verwendet. 
 Diese berechnet aus dem vom Hersteller gegebenen Transmissionspektrum des Filters über das Wiener-Khintchine-Theorem, d. h. eine Fouriertransformation, die erwartete $g^{(1)}$-Funktion, welche anschließend über die Siegert-Relation in $g^{(2)}(\tau, \rho=0)$ umgerechnet wird. 
-Daraus folgt dann für den vorliegenden Fall $\tau_c^{th} = \int \left(g^{(2)}(\tau, \rho=0) -1\right) d\tau = 0,152\,\mathrm{ps}$. 
+Daraus folgt dann für den vorliegenden Fall $\tau_{\mathrm{c}}^{\mathrm{th}} = \int \left(g^{(2)}(\tau, \rho=0) -1\right) d\tau = 0{,}152\,\mathrm{ps}$. 
 Abschließend ergibt sich also für die erwartete Kohärenzzeit bei verwendetem Aufbau:
 \begin{equation}
-    \tau_c^{\mathrm{meas}} = 0,152\,\mathrm{ps}\cdot 0,62 = 94\,\mathrm{fs}
+    \tau_{\mathrm{c}}^{\mathrm{expect}} = 0{,}62 \cdot 0{,}152\,\mathrm{ps} = 94\,\mathrm{fs}
     \label{eq:tau_c_th}
-\end{equation}\\
+\end{equation}
 
-Da in den Faktor $k_s$ der Winkeldurchmesser der Quelle und damit auch der Durchmesser der Lochblende nach der Xenonlampe eingeht und diese starker Hitze ausgesetzt ist, wurde zudem überprüft, ob die Herstellerangaben von 30\,$\mathrm{\mu m}$ noch zutreffen. 
+Da in den Faktor $k_\mathrm{T}$ der Winkeldurchmesser der Quelle und damit auch der Durchmesser der Lochblende nach der Xenonlampe eingeht und diese starker Hitze ausgesetzt ist, wurde zudem überprüft, ob die Herstellerangaben von 30\,$\mathrm{\mu m}$ noch zutreffen. 
 Eine Aufnahme der Lochblende unter dem Mikroskop ist dafür in \autoref{fig:lochblende mikroskop} gezeigt. 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.8\textwidth]{images/Aufbau/pinholes.png}
+    \includegraphics[width=0.8\textwidth]{images/Aufbau/Lochblende_Mikroskop.png}
     \caption{Die Mikroskopaufnahme der Lochblende sowie ein Kreis mit $30\,\mathrm{\mu m}$-Durchmesser sind gezeigt. Trotz irregulärer Strukturen am Rand entspricht der gemessene Durchmesser recht genau den Herstellerangaben.}
     \label{fig:lochblende mikroskop}
 \end{figure}
 Der eingezeichnete Kreis entspricht einem Durchmesser von $30\,\mathrm{\mu m}$. 
-Auch wenn deutliche Abnutzungserscheinungen an den Rändern sichtbar sind, ist der gemessene Durchmesser sehr nah an den $30\,\mathrm{\mu m}$, die in die Berechnung von $k_s$ eingehen. 
-Der erwähnte Wert von $\tau_c^{\mathrm{meas}}$ entspricht daher der Theorierwartung. 
-\todo{plot erneuern}
+Auch wenn deutliche Abnutzungserscheinungen an den Rändern sichtbar sind, ist der gemessene Durchmesser sehr nah an den $30\,\mathrm{\mu m}$, die in die Berechnung von $k_\mathrm{T}$ eingehen. 
+Der erwähnte Wert von $\tau_{\mathrm{c}}^{\mathrm{expect}}$ entspricht daher der Theorierwartung. 
