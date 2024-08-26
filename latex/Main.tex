@@ -133,8 +133,8 @@ sorting=none]{biblatex}
 
 % --------------------------------------------------------
 % CUSTOM STUFF:
-\usepackage[textsize=tiny]{todonotes}
-\setlength{\marginparwidth}{2cm}
+% \usepackage[textsize=tiny]{todonotes}
+% \setlength{\marginparwidth}{2cm}
 \usepackage{bm}
 %---------------------------------------------------------
 \usepackage{hyperref} % enable clickable links to sections, figures, etc. 
@@ -160,7 +160,9 @@ pdfborder = {0 0 0}
 \input{chapters/titlepage.tex}
 \pagenumbering{gobble}
 
-
+\clearpage
+\mbox{}
+\clearpage
 \clearpage
 \mbox{}
 \clearpage
@@ -170,8 +172,15 @@ pdfborder = {0 0 0}
 %---------------------------------------------------------
 %	Table of Contents
 %---------------------------------------------------------
-% Generate 
+% Generate
+\newgeometry{
+    %a4paper,
+	%left=20mm,
+    right=40mm,
+	top=35mm,
+    } 
 \tableofcontents
+\restoregeometry
 \clearpage
 \mbox{}
 \clearpage
@@ -184,7 +193,7 @@ pdfborder = {0 0 0}
 % This is where your work comes in 
 
 % -------------------------------
-\listoftodos \clearpage
+% \listoftodos \clearpage
 % It is recommended, to import your chapters from a master file for easier management
 \section{Einleitung}
 \label{sec:Einleitung}

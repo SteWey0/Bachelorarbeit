@@ -9,7 +9,7 @@ Zuletzt werden angewandte Korrekturen und Filter angesprochen sowie verdeutlicht
 Die Aufnahme der Daten erfolgt durch ein von der Arbeitsgruppe geschriebenes Programm, welches mit den ADCs kommuniziert. Ein Screenshot der GUI, auf dem die wichtigsten Schritte der Datenaufnahme markiert sind, ist in \autoref{fig:Screenshot GUI} eingefügt. 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=0.9\textwidth]{images/Datenaufnahme/GUI.pdf}
+    \includegraphics[width=\textwidth]{images/Datenaufnahme/GUI.pdf}
     \caption{Dargestellt ist ein Screenshot der GUI zur Datenaufnahme. Wichtige Schritte sind markiert.}
     \label{fig:Screenshot GUI}
 \end{figure}
@@ -22,14 +22,13 @@ Die genannten Einstellung werden größtenteils vor der Messung automatisch mit 
 Vor Start der Messung müssen zwei Kalibrationsschritte für jeden Kanal gemacht werden. 
 Zuerst wird unter \emph{2} eine Offset-Messung durchgeführt, indem \glqq Measure\grqq\;und \glqq Calc Offset\grqq\;gewählt werden. 
 Diese wird ohne Beleuchtung und mit ausgeschalteter Hochspannung durchgeführt. 
-Das Programm bestimmt diesen vom Verstärker abhängigen Offset und speichert diesen zur späteren Entfernung \cite{zmijaOpticalIntensityInterferometry2021}. 
+Das Programm bestimmt den vom Verstärker abhängigen Offset und speichert diesen zur späteren Entfernung \cite{zmijaOpticalIntensityInterferometry2021}. 
 Anschließend wird bei eingeschalteter Hochspannung und niedriger Photonenrate eine PMT-Puls-Kalibration durchgeführt, sodass gemessene Spannungen in Photonenraten umgerechnet werden können. 
 Die Kalibration ist nötig, da aufgrund der hohen Raten bei der Messung keine Einzelphotonenpulse vorliegen, aus denen sich die Raten einfach bestimmen lassen würden, sondern die Pulse überlappen.
-Für die Kalibration wird für jeden Kanal die mittlere Pulsform der PMT-Pulse bestimmt und gespeichert, woraus anschließend eine druchschnittliche Ladung pro Puls und damit die Rate berechnet werden kann.
+Für die Kalibration wird für jeden Kanal die mittlere Pulsform der PMT-Pulse bestimmt und gespeichert, woraus anschließend eine druchschnittliche Ladung pro Puls und damit die Photonenrate in MHz berechnet werden kann.
 Die Ratenanzeige in \emph{5} ist nützlich zur leichteren Justierung des optischen Aufbaus (Maximierung der Rate), sowie bei der Beobachtung eines Sterns zum Vergleich mit Theoriewerten.
 Für die vorliegende Arbeit ist allerdings hauptsächlich relevant, dass während der Kalibration die mittlere PMT-Pulsform gespeichert wird.
-Es wird erwartet, dass diese einen bedeutenden Einfluss auf die Form der $g^{(2)}$-Funktion hat, da die Photonenpulse deutlich breiter sind als die einzelnen $1{,}6$\,ns-Bins, was zu einer Korrelation benachbarter Bins führt \cite{zmijaOpticalIntensityInterferometry2021}. 
-Aus den gemessenen Daten wird bestimmt, wie viel Ladung ein Photon, das auf einen PMT trifft, durchschnittlich freisetzt, woraus anschließend die in \emph{5} gezeigten Photonenraten in MHz bestimmt werden können. \\
+Es wird erwartet, dass diese einen bedeutenden Einfluss auf die Form der $g^{(2)}$-Funktion hat, da die Photonenpulse deutlich breiter sind als die einzelnen $1{,}6$\,ns-Bins, was zu einer Korrelation benachbarter Bins führt \cite{zmijaOpticalIntensityInterferometry2021}. \\
 Nach diesen Kalibrationsschritten kann die Messung gestartet werden, woraufhin synchronisiert durch den Trigger des White Rabbit Systems 2$\cross$2\,GS Daten aufgenommen werden. 
 Dies entspricht einer Messdauer von $3{,}436\,\mathrm{s}$. 
 Nach Ablauf von 4\,s startet anschließend der nächste Trigger eine Messung von 2$\cross$2\,GS, sodass idealerweise ein Duty-Cycle von 85{,}9\% erreicht wird \cite{zmijaFirstIntensityInterferometry2023}. 
@@ -38,7 +37,7 @@ Zur Veranschaulichung ist in \autoref{fig:Offest_Rate Kalibration} aufgezeigt, w
 \begin{figure}[h]
     \centering
     \includegraphics{images/Datenaufnahme/Kalibration.pdf}
-    \caption{Abgebildet ist der Ausschnitt einer Waveform für die Offset-Messung in Orange (ausgeschaltete Hochspannung und Beleuchtung), Puls-Kalibration in Blau (Hochspannung und Licht an, niedrige Photonenrate) und für die Messung in Grau.}
+    \caption{Dargestellt ist der Ausschnitt einer Waveform für die Offset-Messung in Orange (ausgeschaltete Hochspannung und Beleuchtung), Puls-Kalibration in Blau (Hochspannung und Licht an, niedrige Photonenrate) und für die Messung in Grau.}
     \label{fig:Offest_Rate Kalibration}
 \end{figure}
 
@@ -59,14 +58,14 @@ Um aus einer bestimmten $G^{(2)}$-Funktion die normierte zeitliche Korrelationsf
     \label{eq:G2 normalisierung}
 \end{equation}
 Ein Beispiel für die unnormierte Funktion $G^{(2)}$ einer einzelnen Datei ist in \autoref{fig:G2(tau)} dargestellt. 
+Es ist ersichtlich, dass die Funktion stark verrauscht ist und der Bunching Peak nicht auszumachen ist. 
+Die in \autoref{ssec:Intensitätsinterferometrie} bereits erwähnte Notwendigkeit der Mittelung über viele Daten, d. h. lange Zeiten, um die Form von $g^{(2)}$ bestimmen zu können, ist daher deutlich sichtbar. 
 \begin{figure}[h]
     \centering
     \includegraphics{images/Datenaufnahme/G2.pdf}
     \caption{Ein Beispiel einer unnormierten Korrelationsfunktion ist abgebildet. Durch das verrauschte Signal ist an der Stelle $\tau=0$ kein Bunching Peak sichtbar.}
     \label{fig:G2(tau)}
 \end{figure}
-Es ist ersichtlich, dass die Funktion stark verrauscht ist und der Bunching Peak nicht auszumachen ist. 
-Die in \autoref{ssec:Intensitätsinterferometrie} bereits erwähnte Notwendigkeit der Mittelung über viele Daten, d. h. lange Zeiten, um die Form von $g^{(2)}$ bestimmen zu können, ist daher deutlich sichtbar. 
 
 \subsection{Mittelung der Daten und Filter}
 \label{ssec:mittelung und filter}

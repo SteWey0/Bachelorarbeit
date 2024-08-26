@@ -12,7 +12,7 @@ Zudem wird auf die Phänomene Bunching und Antibunching eingegangen und abschlie
 Um ein stabiles Interferenzmuster beobachten zu können, ist es wichtig, dass die beiden einfallenden Lichtfelder eine feste Phasenbeziehung zueinander haben. 
 Ist dies nicht der Fall, überlagern sich verschiedene Interferenzmaxima und -minima und ergeben ein räumlich und zeitlich unstetiges Muster. 
 Um diese Eigenschaft des Lichts besser zu beschreiben, gibt es den Begriff der Kohärenz.
-Man unterscheidet zwischen räumlicher und zeitlicher Kohärenz, wobei räumliche die Phasenbeziehung an verschiedenen Orten zur gleichen Zeit und zeitliche Kohärenz die Phasenbeziehung an ein und demselben Ort, aber zu verschiedenen Zeiten quantifiziert. \cite[Kap. 9.2]{hechtOptik2018}
+Man unterscheidet zwischen räumlicher und zeitlicher Kohärenz, wobei räumliche die Phasenbeziehung an verschiedenen Orten zur gleichen Zeit und zeitliche Kohärenz die Phasenbeziehung an ein und demselben Ort, aber zu verschiedenen Zeiten quantifiziert \cite[Kap. 9.2]{hechtOptik2018}.
 Eine veranschaulichende Skizze ist in \autoref{fig:skizze kohärenz} dargestellt.
 \begin{figure}[h]
     \centering
@@ -25,10 +25,10 @@ Die Welle ist monochromatisch und damit zeitlich oder auch longitudinal kohären
 Auch in transversaler Richtung (vergleiche Punkte $P_1$-$P_3$) entlang einer Wellenfront ist die Phasenbeziehung für jeden Zeitpukt identisch. 
 Die Welle ist räumlich bzw. transversal kohärent. 
 Räumliche Kohärenz liegt auch in \autoref{fig:skizze kohärenz} (b) vor. 
-Allerdings ist erkennbar, dass die Welle in longitudinaler Richutung nicht für alle Distanzen eine feste Phasenbeziehung aufweist. 
+Allerdings ist erkennbar, dass die Welle in longitudinaler Richtung nicht für alle Distanzen eine feste Phasenbeziehung aufweist. 
 So ist die Frequenz in $P_1'$ beispielsweise niedriger als die in $P_3'$. 
 Es existieren aber trotzdem Bereiche, in welchen die Phase sich deterministisch verändert. 
-Die kürzeste Länge, für die dies gilt, ist die Kohärenzlänge $\Delta l_\mathrm{c}$, die über die Ausbreitungsgeschwindigkeit $c$ mit der sog. Kohärenzzeit $\Delta l_\mathrm{c} = c\tau_{\mathrm{c}}$ zusammenhängt. 
+Die kürzeste Länge, für die dies gilt, ist die Kohärenzlänge $\Delta l_\mathrm{c}$, die über die Ausbreitungsgeschwindigkeit $c$ mit der sog. Kohärenzzeit $\tau_{\mathrm{c}}= \nicefrac{\Delta l_\mathrm{c}}{c}$ zusammenhängt. 
 Die Kohärenzzeit ist damit jene Zeit, für welche die Phase einer Welle vorhersehbar ist. 
 Damit haben vollständig zeitlich kohärente Quellen eine unendlich lange Kohärenzzeit, teilweise kohärente Quellen eine endliche Kohärenzzeit, und für inkohärente Quellen gilt $\tau_{\mathrm{c}}\approx 0$. 
 
@@ -63,12 +63,11 @@ Eine Methode, die räumliche Korrelationsfunktion erster Ordnung zu messen, ist 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\textwidth]{images/Theorie/Michelson_Interferometer.pdf}
-    \caption{Abgebildet ist eine Skizze des Michelson-Sterninterferometers zur Bestimmung von Sternendurchmessern. Zwei durch die Distanz $d$ getrennte Spiegel lenken das Sternenlicht zusammen und es kommt zur Interferenz, die mit einem Detektor beobachtbar ist. Dafür wird der geometrische Streckenunterschied $d\sin\alpha$ durch Verzögerungen kompensiert, um dieselbe Wellenfront zu vergleichen. Abbildung inspiriert von \cite[Abb. 1]{foellmiIntensityInterferometrySecondorder2009}.}
+    \caption{Dargestellt ist eine Skizze des Michelson-Sterninterferometers zur Bestimmung von Sternendurchmessern. Zwei durch die Distanz $d$ getrennte Spiegel lenken das Sternenlicht zusammen und es kommt zur Interferenz, die mit einem Detektor beobachtbar ist. Dafür wird der geometrische Streckenunterschied $d\sin\alpha$ durch Verzögerungen kompensiert, um dieselbe Wellenfront zu vergleichen. Abbildung inspiriert von \cite[Abb. 1]{foellmiIntensityInterferometrySecondorder2009}.}
     \label{fig:Michelson-Sterninterferometer}
 \end{figure}
-Der historische Grund für die Entwicklung von Interferometern zur Beobachtung von Sternen liegt im Ziel, immer bessere Winkelauflösungen erreichen zu wollen. 
-Während für die Winkelauflösung gewöhnlicher Teleskope $\theta \propto \frac{\lambda}{D}$ gilt, gilt für Interferometer $\theta \propto \frac{\lambda}{d}$. 
-\todo{citation}
+Der historische Grund für die Entwicklung von Interferometern zur Beobachtung von Sternen liegt im Streben nach immer besseren Winkelauflösungen. 
+Während für die Winkelauflösung gewöhnlicher Teleskope $\theta = 1{,}22\, \frac{\lambda}{D}$ gilt \cite[Gl. 5.6]{hanslmeierAstronomischeInstrumente2020}, gilt für Interferometer $\theta = 1{,}22\, \frac{\lambda}{d}$ \cite[Gl. 6.2]{foxQuantumOpticsIntroduction2006}. 
 Hierbei ist $\lambda$ die Wellenlänge, $D$ der Durchmesser der Teleskopöffnung (je nach Bauart der Hauptspiegel oder die Linse) und $d$ der Abstand zwischen Teleskopen, die ein Interferometer bilden. 
 Da es technisch schwierig ist, beliebig große Spiegel- bzw. Linsendurchmesser anzufertigen, sind optische Teleskope auf eine vergleichsweise geringe Auflösung im Bereich von einigen Bogensekunden limitiert. 
 Bogensekunden und Bogenminuten (arcsec bzw. arcmin) sind eine typische astronomische Einheit für scheinbare Durchmesser von Objekten in einer gegebenen Entfernung. 
@@ -95,14 +94,14 @@ Dies ist in \autoref{fig:räumliche kohärenz einer ausgedehnten quelle} dargest
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Theorie/Burke_9.25.png}
-    \caption{Abgebildet ist eine Skizze, die veranschaulicht, wie eine ausgedehnte inkohärente Quelle bei Teleskopseparationen $d>0$ trotzdem teilweise korreliertes Licht aufweist. Links ist eine Quelle schematisch in viele kohärente Punktquellen zerlegt, die ebene Wellen emittieren. In den beiden Detektoren rechts werden jeweils alle ebenen Wellen detektiert, allerdings kommen diese aufgrund der Geometrie zu leicht verschiedenen Zeiten an. Es ist deutlich, dass die Lichtfelder für steigende $d$ immer verschiedener werden (die Kohärenz sinkt), während sie für $d=0$ vollkommen identisch und somit kohärent sind. Die Abbildung ist \cite[Fig. 9.25]{burkeIntroductionRadioAstronomy2019} entnommen.}
+    \caption{Veranschaulicht wird, wie eine ausgedehnte inkohärente Quelle bei Teleskopseparationen $d>0$ trotzdem teilweise korreliertes Licht aufweist. Links ist eine Quelle schematisch in viele kohärente Punktquellen zerlegt, die ebene Wellen emittieren. In den beiden Detektoren rechts werden jeweils alle ebenen Wellen detektiert, allerdings kommen diese aufgrund der Geometrie zu leicht verschiedenen Zeiten an. Es ist deutlich, dass die Lichtfelder für steigende $d$ immer verschiedener werden (die Kohärenz sinkt), während sie für $d=0$ vollkommen identisch und somit kohärent sind. Die Abbildung ist \cite[Fig. 9.25]{burkeIntroductionRadioAstronomy2019} entnommen.}
     \label{fig:räumliche kohärenz einer ausgedehnten quelle}
 \end{figure}
 Diese Korrelation ist maximal für eine Teleskopseparation von $d=0$, da in diesem Fall in beiden Teleskopen exakt dasselbe Licht gemessen wird. 
 Wird $d$ nun immer weiter erhöht, verringert sich die Korrelation zwischen den Feldern immer weiter. 
 Die Lichtfelder bestehen aus immer verschiedeneren ebenen Wellen und sind sich weniger ähnlich. 
 Ab einer Separation $d_0 \approx \Delta l_\mathrm{c}$ sind die Lichtfelder nicht mehr korreliert und $g^{(1)}$ fällt auf Null ab. 
-Distanzen entlang der Ausbreitungsrichtung ($l_\mathrm{c}$) und transversal dazu $d_0$ werden im Michelson-Interferomter verknüpft, da die Lichtwellen von verschiedenen Orte zu einem Ort zusammengeführt werden müssen.
+Distanzen entlang der Ausbreitungsrichtung ($l_\mathrm{c}$) und transversal dazu ($d_0$) werden im Michelson-Interferomter verknüpft, da die Lichtwellen von verschiedenen Orten zu einem Ort zusammengeführt werden müssen.
 Dies schafft eine enge Verbindung zwischen transversaler (räumlicher) und longitudinaler (zeitlicher) Kohärenz.  
 Für spektral breites Licht (wie für thermisches Licht von Sternen üblich) ist die Kohärenzlänge und damit die maximale Teleskopseparation sehr klein (vgl. \autoref{eq:tau(delta nu)}). 
 Daher wird häufig auf entsprechend enge optische Filter zurückgegriffen, die die spektrale Breite des Lichts heruntersetzen, um die Kohärenzlänge zu erhöhen. \\
@@ -113,12 +112,12 @@ Messgröße des Michelson-Sterninterferometers ist im einfachsten Fall der Inter
     K = \frac{I_{\mathrm{max}}-I_{\mathrm{min}}}{I_{\mathrm{max}}+I_{\mathrm{min}}}=\left|g^{(1)}(\mathbf{r}, \bm{\rho}, t, \tau)\right|
 \end{equation} 
 Hierbei sind $I_{\mathrm{max}}$ bzw. $I_{\mathrm{min}}$ die Intensitätsmaxima bzw. -minima der gemessenen Intensität auf dem Schirm. 
-$\tau$ ist hierbei die Zeitdifferenz zwischen den beiden Feldern, die durch die Strecke $d\cdot\sin \alpha$ in \autoref{fig:Michelson-Sterninterferometer} entsteht, und $\bm{\rho}$ der effektive Abstandsvektor zwischen den Teleskopen. 
+$\tau$ ist die Zeitdifferenz zwischen den beiden Feldern, die durch die Strecke $d\cdot\sin \alpha$ in \autoref{fig:Michelson-Sterninterferometer} entsteht, und $\bm{\rho}$ der effektive Abstandsvektor zwischen den Teleskopen. 
 Der effektive Teleskopabstand entspricht der Projektion des Teleskopabstandes $d$ in die Beobachtungsebene, die i. A. nicht parallel zu $d$ liegt. 
 Durch komplexere Methoden lässt sich neben der Amplitude auch die Phase der komplexen Funktion $g^{(1)}(\mathbf{r}, \bm{\rho}, t, \tau)$ messen, vgl. dazu \cite[Kap. 4.3]{mandelOpticalCoherenceQuantum1995}. \\
 Die Messung eines Sternendurchmessers lässt sich nun wie folgt bewerkstelligen:
 Im Interferometer wird die Weglängendifferenz $d \cdot\sin \alpha$ durch die Wahl einer passenden Verzögerung kompensiert, sodass die Welle zwar an zwei verschiedenen Orten, aber effektiv zu ein und derselben Zeit gesampelt wird. 
-$\tau=0$ und die Welle ist zeitlich kohärent \cite{foellmiIntensityInterferometrySecondorder2009}. 
+Es gilt daher $\tau=0$ und die Welle ist zeitlich kohärent \cite{foellmiIntensityInterferometrySecondorder2009}. 
 Durch Messung des Interferenzkontrastes für verschiedene effektive Spiegelseparationen $\rho=|\bm{\rho}|$ lässt sich die räumliche Korrelationsfunktion erster Ordnung messen. 
 Über das van Cittert-Zernike-Theorem lässt sich aus der gemessenen räumlichen Korrelationsfunktion nun über eine Fouriertransformation auf die Intensitätsverteilung der Quelle zurückschließen \cite[Gl. 4.4-40]{mandelOpticalCoherenceQuantum1995}:
 \begin{equation}
@@ -128,7 +127,7 @@ Durch Messung des Interferenzkontrastes für verschiedene effektive Spiegelsepar
 Hierbei sind $\bm{r}_1=\bm{s}_1 r_1$ und $\bm{r}_2=\bm{s}_2 r_2$ die Verbindungsvektoren zwischen den Beobachtungsorten und einem Punkt der Quelle. 
 Es erfolgt eine Integration der Intensität über alle Punkte der Quelle, d. h. alle $I\left(\bm{r}'\right)$ für alle $\bm{r}'\in \sigma$. 
 $\overline{k}$ ist die durchschnittliche Wellenzahl des beobachteten Lichts an beiden Orten, d. h. $\overline{k} = \frac{2\pi\overline{\nu}}{c}$ mit der durchschnittlichen Frequenz $\overline{\nu}$ und der Ausbreitungsgeschwindigkeit $c$. 
-Die erwähnten Größen sind zur Veranschaulichung ebenfalls in \autoref{fig:van Cittert-Zernike} skizziert. 
+Die erwähnten Größen sind zur Veranschaulichung ebenfalls in \autoref{fig:van Cittert-Zernike} skizziert. \\
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.8\textwidth]{images/Theorie/Mandel_4.12.png}
@@ -151,7 +150,7 @@ Daher ist es nicht verwunderlich, dass die Notwendigkeit spektraler Filter zur H
 Ein Nachteil des Michelson-Sterninterferometers ist die schwierig herzustellende Stabilität im Teleskop. 
 Da die Wellen direkt miteinander interferieren, muss der Weg des Lichts auf einen Bruchteil einer Wellenlänge stabilisiert werden, um Phasenstabilität sicherzustellen. 
 Dies wird insbesondere schwieriger, je größer die Spiegelabstände werden, was das Herstellen großer Winkelauflösungen erschwert. 
-Weiterhin induzieren atmosphärische Variabilitäten schwer vorherzusagende Phasendifferenzen zwischen den beiden Teleskopen, die das Interferenzenmuster beeinflussen \cite[Kap. 2]{brownIntensityInterferometerIts1974}. 
+Weiterhin induzieren atmosphärische Variabilitäten schwer vorherzusagende Phasendifferenzen zwischen den beiden Teleskopen, die das Interferenzmuster beeinflussen \cite[Kap. 2]{brownIntensityInterferometerIts1974}. 
 Durch dieses sogenannte \glqq Seeing\grqq\;und die Notwendigkeit eines mechanisch sehr präzisen und stabilen Aufbaus sind Michelson-Sterninterferometer in ihrer Größe limitiert. 
 Um beide Probleme zu umgehen, haben Hanbury Brown und Twiss ein modifiziertes System entwickelt -- das Intensitätsinterferometer.
 
@@ -165,14 +164,14 @@ An beiden Teleskopen wird voneinander unabhängig der Photonenstrom, z. B. mitte
 Vor- und Nachteil dieser Vorgehensweise ist die Insensitivität gegenüber Phasenunterschieden zwischen dem eintreffenden Licht an beiden Teleskopen. 
 Einerseits geht durch die Messung Information (über die Phase) verloren, andererseits wird der Aufbau einfacher, da weder Phasenstabilität zwischen Teleskopen noch atmosphärisches Seeing einen Einfluss auf das korrelierte Signal haben.
 Dieses Vorgehen ermöglicht im Prinzip beliebig lange Separationen und damit beliebig gute Winkelauflösungen. 
-Vorraussetzung dafür ist lediglich, die Distanz zwischen Teleskopen im Vergleich zur Länge, die das Licht in der Detektorzeitauflösung zurücklegt, genau zu kennen \cite{DemonstrationStellarIntensity}. 
+Voraussetzung dafür ist lediglich, die Distanz zwischen Teleskopen im Vergleich zur Länge, die das Licht in der Detektorzeitauflösung zurücklegt, genau zu kennen \cite{DemonstrationStellarIntensity}. 
 %So werden mit den VERITAS-Teleskopen z. B. mittels Intensitätsinterferometrie von Licht mit der Wellenlänge $\lambda_{\mathrm{eff}}=416\,\mathrm{nm}$ und effektiven, maximalen Teleskopseparationen von $r_{\mathrm{avg}}=157{,}9\,\mathrm{m}$ Winkelauflösungen von etwa $0{,}6\,\mathrm{marcsec}$ erreicht \cite{DemonstrationStellarIntensity}.
 \\
-Eine schematische Darstellung des Intensitätsinterferometers ist in \autoref{fig:Intensitätsinterferometer} dargestellt. 
+Eine schematische Skizze des Intensitätsinterferometers ist in \autoref{fig:Intensitätsinterferometer} dargestellt. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.65\textwidth]{images/Theorie/Fox_6.1b.png}
-    \caption{Eine Skizze des Intensitätsinterferometers ist abgebildet. Das gesammelte Licht wird direkt detektiert und das zu den Intensitäten proportionale Signal elektronisch kombiniert. Entnommen aus \cite[Fig. 6.1(b)]{foxQuantumOpticsIntroduction2006}.}
+    \caption{Eine Skizze des Intensitätsinterferometers ist abgebildet. Das gesammelte Licht wird direkt detektiert und das zu den Intensitäten proportionale Signal elektronisch kombiniert. Entnommen aus \cite[Fig. 6.1]{foxQuantumOpticsIntroduction2006}.}
     \label{fig:Intensitätsinterferometer}
 \end{figure}
 Zur Beschreibung der Korrelation von Intensitäten ist eine Erweiterung der bisher genannten Theorie nötig. 
@@ -188,7 +187,7 @@ Mit der Notation $I=\left<I(t)\right>$ und unter der Annahme von thermischem, bz
     \label{eq:g2_final}
 \end{equation}
 Durch das Interferometer kann nun (analog zu $g^{(1)}(\bm{\rho})$ beim Michelson-Sterninterferometer) $g^{(2)}(\bm{\rho})$ gemessen werden. 
-Um nun trotzdem auf die Quellengeometrie schließen zu können, wird ein Zusammenhang zwischen $g^{(1)}$ und $g^{(2)}$, die sog. Siegert-Relation, genutzt \cite{lasseguesFieldIntensityCorrelations2022}:
+Um trotzdem auf die Quellengeometrie schließen zu können, wird ein Zusammenhang zwischen $g^{(1)}$ und $g^{(2)}$, die sog. Siegert-Relation, genutzt \cite{lasseguesFieldIntensityCorrelations2022}:
 \begin{equation}
     g^{(2)}(\tau) = 1+ \left|g^{(1)}(\tau)\right|^2
 \end{equation}
@@ -200,7 +199,7 @@ Ein Beispiel für thermisches Licht ist die Emission eines Sterns und ein Beispi
 Da die Phaseninformation von $g^{(1)}$ durch dieses Vorgehen unbekannt ist, kann nicht direkt durch Anwendung des van Cittert-Zernike-Theorems auf die Quellengeometrie geschlossen werden. 
 Stattdessen wird üblicherweise ein Modell der Lichtquelle angenommen, von welchem die Fouriertransformation bekannt ist. 
 Durch einen Fit dieser an die gemessenen Daten lassen sich abschließend physikalische Größen wie der Durchmesser der Quelle bestimmen. \\
-Ein Beispiel für typische im Labor auftretende Größenordnungen der räumlichen Korrelationsfunktionen ist in \autoref{fig:g1(rho),g2(rho) für versch Lochblenden} dargestellt. 
+Beispiele für typische im Labor auftretende Größenordnungen der räumlichen Korrelationsfunktionen sind in \autoref{fig:g1(rho),g2(rho) für versch Lochblenden} dargestellt. 
 Hierbei wird als \glqq Stern\grqq\;eine von einer chaotischen Lichtquelle uniform ausgeleuchtete Lochblende des Durchmessers $d$ im Abstand $x$ angenommen. 
 Dies entspräche im einfachsten Sternmodell einer uniform leuchtenden Scheibe einem Stern mit Winkeldurchmesser $\Delta \theta = \frac{d}{x}$. 
 Für dieses Modell gilt nach \cite[Kap. 4.1]{brownIntensityInterferometerIts1974}:
@@ -262,6 +261,7 @@ Hierbei entspricht $\Delta f$ der Umrechnung von $\Delta\lambda$ in den Frequenz
     \caption{Abgebildet ist der Theorieverlauf von $g^{(1)}(\tau)$ und $g^{(2)}(\tau)$ für einen Filter mit rechteckigem Transmissionsprofil mit Breite 2, bzw. 5\,nm, zentriert um 465\,nm.}
     \label{fig:g1(tau),g2(tau) für versch Filter}
 \end{figure}
+
 In einer realen Messung verringert das Binning der Messdaten in Intervalle $\tau_\mathrm{B}$ den Wert von $g^{(2)}(0)$ zusätzlich. 
 Da dieses zumeist deutlich größer ist als die Kohärenzzeit, werden im zentralen Bin $\tau \in [0, \tau_\mathrm{B}]$ neben den kohärenten Photonen auch ein Faktor $\nicefrac{\tau_\mathrm{B}}{\tau_{\mathrm{c}}}$ mehr zufällig koinzidente Photonen gemessen. 
 Dies verringert $g^{(2)}(0)$ um ebendiesen Faktor \cite[Kap. 14.7]{mandelOpticalCoherenceQuantum1995}. 
@@ -283,7 +283,7 @@ Abschließend soll noch gezeigt werden, dass ein Einfluss der Kabellänge auf $g
 \begin{equation}
     g^{(2)}(\tau) = \frac{\left<J_1(t) J_2(t+\tau) \right>}{J_1 J_2}
 \end{equation}
-Führt man nun eine zeitunabhängige Dämpfung der Signale um Faktoren $\alpha$ bzw. $\beta$ ein, wie diese durch unterschiedlich lange Koaxialkabel hervorgerufen werden würden, so folgt aufgrund der angenommenen Zeitunabhängigkeit:
+Führt man nun eine zeitunabhängige Dämpfung der Signale um Faktoren $\alpha$ bzw. $\beta$ ein, wie diese durch unterschiedlich lange Koaxialkabel hervorgerufen werden würde, so folgt aufgrund der angenommenen Zeitunabhängigkeit:
 \begin{equation}
     g^{(2)}(\tau)_{\mathrm{damp}} = \frac{\left<\alpha J_1(t) \beta J_2(t+\tau) \right>}{\alpha J_1 \beta J_2}
     = \frac{\alpha \beta}{\alpha \beta} \frac{\left<J_1(t) J_2(t+\tau) \right>}{J_1 J_2} = g^{(2)}(\tau)

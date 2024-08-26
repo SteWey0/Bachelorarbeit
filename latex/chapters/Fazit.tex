@@ -13,17 +13,17 @@ Diese Methode funktioniert für die im Labor aufgenommenen Daten mit hohem Signa
 Fits konvergieren für beide Fälle sowohl für $\tau_\mathrm{c}$ als auch für die Fehlerbestimmung problemlos, was darauf hinweist, dass die Anwendung dieser (im Vergleich zum Gaußfit komplizierteren) Methode einfach umsetzbar ist. 
 Zudem weist diese Methode einige Vorteile auf. 
 Sie erfasst eine asymmetrische, PMT- und kabelabhängige Form des Bunching Peaks, wodurch diese auch in der Integration berücksichtigt wird. 
-Weiterhin lässt sich über den Fitparameter $\sigma$ ermitteln, ob es zusätzliche Veränderungen der Zeitauflösung während der Messung gibt. 
+Weiterhin lässt sich über den Fitparameter $\sigma$ ermitteln, ob es zusätzliche Beiträge zur Zeitauflösung während der Messung gibt. 
 Auch wenn dies nicht der Fall ist, ist die Konvergenz der Fits gut, lediglich die Fehler auf einzelne Fitparameter sind durch die Fitroutine nicht mehr abschätzbar (vgl. \autoref{ssec:Ergebnisse für verschiedene Kabelkombinationen}). 
 Die gefaltene Fitfunktion weist darüber hinaus genauso viele freie Parameter wie eine Gaußfunktion auf, von denen Amplitude und Mittelwert zudem analog interpretiert werden können. 
 Daher ist zu erwarten, dass die hier präsentierte Funktion auch für Daten mit niedriger Statistik ähnlich gut konvergiert wie eine Gaußfunktion, dabei aber oben genannte Vorteile aufweist und zudem am ehesten der theoretischen Erwartung an die Form des Peaks entspricht. 
 Eine weitergehende Auseinandersetzung mit der Funktion in weiteren Labormessungen oder Daten von H.E.S.S. wäre daher interessant. 
 Auch ein Festlegen des Parameters $\sigma$, wie er für die Auswertung der Daten in \cite{zmijaFirstIntensityInterferometry2023} erfolgt ist, wäre grundsätzlich denkbar und bedarf weiterer Untersuchung. \\
 In einem kurzen Exkurs wurde daraufhin aufgezeigt, dass ein Fit für den Vergleich von Absolutwerten von $\tau_\mathrm{c}$, besonders auch für verschiedene Kabelsorten, notwendig ist. 
-Die Integration von Rohdaten führt, auch bei vergleichsweise gerigem Rauschen, zu großen Abweichungen im Wert für die Kohärenzzeit, abhängig von der Integrationsbreite. 
+Die Integration von Rohdaten führt, auch bei vergleichsweise geringem Rauschen, zu großen Abweichungen im Wert für die Kohärenzzeit, abhängig von der Integrationsbreite. 
 Dies liegt zu großen Teilen an der Korrelation benachbarter Bins, wodurch breite, niedrige oder hohe Fluktuationen im Funktionswert von $g^{(2)}$ entstehen. 
 Sollte eine direkte Datenintegration weiterverfolgt werden, sind daher eine Quantifizierung dieses Rauschens und eine Beschäftigung mit der Wahl der Integrationsbreite unabdingbar. \\
-Daraufhin erfolgte die Abschätzung des Fehlers durch Verschiebung des Bunching Peaks über die $g^{(2)}$-Baseline, erneuten Fit und Integration. 
+Daraufhin erfolgte die Abschätzung des Fehlers durch Verschiebung des Bunching Peaks über die $g^{(2)}$-Baseline, erneutem Fit und Integration. 
 Es wurde gezeigt, dass durch dieses Vorgehen sinnvoll der Fehler auf $\tau_\mathrm{c}$ bestimmt werden kann, was durch eine simple Fortpflanzung der Fehler auf jeden $g^{(2)}$-Wert auf den Fit aufgrund der Korrelation benachbarter Punkte nicht möglich wäre. 
 Stattdessen wurde durch die verwendete Methode das Rauschen der Baseline direkt mit in die Fehlerberechnung einbezogen, indem die Änderung des Integrals, abhängig von seiner zufälligen Position im Rauschen, berücksichtigt wurde. \\
 Danach wurde die entwickelte Datenanlyse auf gemessene Daten für fünf verschiedene Kabelkombinationen der Kabel Airborne 5 und LMR 400 angewandt. 
@@ -35,10 +35,10 @@ In diesem Zuge wäre auch eine erneute Begutachtung der Datenverarbeitung in \au
 Sollte es einen Einfluss der Kabeldämpfung auf das Signal geben, würde man von diesem, wie in \autoref{ssec:Intensitätsinterferometrie} gezeigt, eigentlich keinen Einfluss auf die $g^{(2)}$-Funktion erwarten. 
 Daher sollte auch die Möglichkeit nicht ausgeschlossen werden, dass z. B. Schritte im Pre-Processing der Daten einen bisher unbekannten, dämpfungsabhängigen Einfluss auf die berechneten Integrale haben. \\
 Der abschließende Vergleich mit den Daten von Shaula zeigt mehrere Dinge. 
-Einerseits wird wie erwähnt deutlich, dass der verwendete Fit und die Integration auch mit Daten der H.E.S.S.-Teleskope, welche ein hohes Signal-Rausch-Verhältnis aufweisen, funktionieren. 
+Einerseits wird wie erwähnt deutlich, dass der verwendete Fit und die Integration auch mit Daten der H.E.S.S.-Teleskope, welche ein niedriges Signal-Rausch-Verhältnis aufweisen, funktionieren. 
 Weiterhin wird durch den Vergleich der Kohärenzzeitverhältnisse zwischen den beiden Messaufbauten deutlich, dass ein Einfluss (sollte er existieren) zwischen den Aufbauten verträglich ist. 
 Der Vergleich stellt so ein deutliches Indiz dafür dar, dass dieser Einfluss in beiden Fällen durch denselben Effekt, beispielsweise unterschiedlich lange Kabel, bedingt ist. \\
 
-Zusammenfassend bietet die vorliegende Arbeit, auch wenn sie dem Ziel der Bestimmung und Quantifizierung des Effekts der Kabellänge auf $\tau_\mathrm{c}$ nicht statistisch aussagekräftig gerecht werden kann, weitere deutliche Indize für diesen und entwickelt auf dem Weg dahin weitere Analyseschritte, welche für weitere Messungen zur Verfügung stehen. 
+Zusammenfassend bietet die vorliegende Arbeit weitere deutliche Indizien für einen Einfluss der Kabellänge auf $\tau_\mathrm{c}$ und entwickelt auf dem Weg dahin weitere Analyseschritte, welche für weitere Messungen zur Verfügung stehen. 
 
 

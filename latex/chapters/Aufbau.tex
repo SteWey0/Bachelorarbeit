@@ -3,14 +3,14 @@ Dafür wird dieser zuerst anhand einer Skizze erklärt.
 Anschließend wird die bereits entwickelte Theorie auf den Aufbau bezogen und aufgezeigt, welche Abweichungen sich von der idealisierten Herangehensweise im vorangegangenen Abschnitt ergeben. 
 In diesem Zuge wird abschließend die Erwartung an die Messgröße $\tau_{\mathrm{c}}$ berechnet, auf welche sich in späteren Abschnitten bezogen werden soll. \\
 
-Am einfachsten lässt sich der Versuchsaufbau anhand einer vereinfachten Skizze nachvollziehen. Diese ist daher in \autoref{fig:Versuchsaufbau} dargestellt. 
+Am besten lässt sich der Versuchsaufbau anhand einer vereinfachten Skizze nachvollziehen. Diese ist daher in \autoref{fig:Versuchsaufbau} dargestellt. 
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.9\linewidth]{images/Aufbau/Aufbau.pdf}
-    \caption{Abgebildet ist eine vereinfachte Skizze des verwendeten Aufbaus, welche die konzeptuell wichtigsten Bestandteile darstellt.}
+    \caption{Gezeigt ist eine vereinfachte Skizze des verwendeten Aufbaus, welche die konzeptuell wichtigsten Bestandteile darstellt.}
     \label{fig:Versuchsaufbau}
 \end{figure}
-Als Lichtquelle wird eine Xenon Lampe (Osram XBO 75 W/2 \cite{XBO75OSRAM}) gewählt. 
+Als Lichtquelle wird eine Xenonlampe (Osram XBO 75 W/2 \cite{XBO75OSRAM}) gewählt. 
 Als Gasentladungslampe emittiert diese nach \autoref{ssec:Intensitätsinterferometrie} chaotisches Licht, welches Bunching aufweist. 
 Da nach dem van Cittert-Zernike-Theorem der Winkeldurchmesser der Lichtquelle invers proportional zur Breite von $g^{(2)}(\bm{\rho})$ ist, ist weiterhin darauf zu achten, die Ausdehnung der Lichtquelle einzuschränken, damit korrelierte Photonen am Detektor vorliegen. 
 Zu diesem Zweck ist eine kreisförmige Lochblende mit einem Durchmesser von $d=30\,\mathrm{\mu m}$ verbaut. 
@@ -35,7 +35,7 @@ Abschließend werden die Daten auf RAIDs (Areca ARC-8050T3U-12 \cite{ARC8050T3UT
 Da ein Ziel dieser Arbeit ist, zu untersuchen, wie sich verschiedene Kabel auf das Integral des Bunching Peaks auswirken, soll an dieser Stelle explizit auf die verwendeten Koaxialkabel eingegangen werden. 
 Die ersten durchgeführten Messungen erfolgen mit 10 und 40\,m langen Kabeln des Typs Airborne 5 \cite{s.r.lAirborne10Coaxial}. 
 Dies entspricht den Kabeln, welche in der von der Arbeitsgruppe 2022 durchgeführten Kampagne mit den H.E.S.S.-Teleskopen genutzt wurden \cite{zmijaFirstIntensityInterferometry2023}. 
-Anschließend wurden noch Messungen mit Kabeln des Typs LMR400 durchgeführt \cite{LMR400CoaxCable}. 
+Anschließend wurden noch Messungen mit Kabeln des Typs LMR 400 durchgeführt \cite{LMR400CoaxCable}. 
 Diese weisen eine geringere Dämpfung auf als die Airborne 5 Kabel und sind daher interessant, um den Einfluss der Dämpfung auf das gemessene $\tau_{\mathrm{c}}$ zu untersuchen. \\
 
 Aufgrund des speziellen Aufbaus ergeben sich einige Änderungen bezüglich der im vorangegangenen Abschnitt eingeführten Theorie. 
@@ -48,19 +48,19 @@ Stattdessen wird ein Mittelwert von $g^{(2)}$ in einem Intervall von $\rho\in[0,
 Dieses Intervall entspricht den Abständen, die korrelierte Photonen durch die Lochblende am Eingang des Strahlteilers haben können. 
 Es wird also erwartet, einen niedrigeren Wert für $g^{(2)}(\rho)$ und damit $\tau_{\mathrm{c}}$ zu messen. 
 Dies ist in \autoref{fig:räumliche koh simulation} verdeutlicht. 
-\begin{figure}[h]
+Um herauszufinden, um welchen Faktor die gemessene Amplitude von der theoretischen maximalen Amplitude abweicht, wird eine von der Arbeitsgruppe geschriebene Simulation durchgeführt, die sowohl den Wert von $g^{(2)}$ für jeden Photonenabstand als auch die Wahrscheinlichkeit für diesen berücksichtigt. 
+Der Faktor, um welchen $g^{(2)}$ im Vergleich zu $g^{(2)}(0)$ verringert ist, beträgt bei gegebenem Aufbau $k_\mathrm{T}=0{,}62$. 
+Über den theoretischen Verlauf der Korrelationsfunktion lässt sich durch $k_\mathrm{T}$ auf einen effektiven Teleskopabstand $\rho\prime$ schließen, bei dem ein dünner Strahl denselben Verlust an räumlicher Kohärenz aufweist. 
+Dies ist auch in \autoref{fig:räumliche koh simulation} veranschaulicht. 
+\begin{figure}[ht]
     \centering
     \includegraphics{images/Aufbau/g2(rho).pdf}
     \caption{Dargestellt ist links die $g^{(2)}$-Funktion, abhängig von der Separation $\rho$. Rechts ist das Ergebnis der Simulation abgebildet. In Blau ist $g^{(2)}$ für jeden Photonenabstand dargestellt (dies entspricht der Kurve im linken Graphen), während in Orange die simulierte Wahrscheinlichkeitsverteilung, ein Photonenpaar bei gegebenem Abstand anzutreffen, aufgetragen ist. Durch Multiplikation der beiden Kurven erhält man den Faktor, wie viel räumliche Kohärenz im Vergleich zum Maximum noch vorhanden ist. Dieser beträgt $k_\mathrm{T}=0{,}62$. Links ist zudem eingezeichnet, welchem Abstand $\rho\prime$ diese Kohärenz entsprechen würde. }
     \label{fig:räumliche koh simulation}
 \end{figure}
-Um herauszufinden, um welchen Faktor die gemessene Amplitude von der theoretischen maximalen Amplitude abweicht, wird eine von der Arbeitsgruppe geschriebene Simulation durchgeführt, die sowohl den Wert von $g^{(2)}$ für jeden Photonenabstand als auch die Wahrscheinlichkeit für diesen berücksichtigt. 
-Der Faktor, um welchen $g^{(2)}$ im Vergleich zu $g^{(2)}(0)$ verringert ist, beträgt bei gegebenem Aufbau $k_\mathrm{T}=0{,}62$. 
-Über den theoretischen Verlauf der Korrelationsfunktion lässt sich durch $k_\mathrm{T}$ auf einen effektiven Teleskopabstand $\rho\prime$ schließen, bei dem ein dünner Strahl denselben Verlust an räumlicher Kohärenz aufweist. 
-Dies ist auch in \autoref{fig:räumliche koh simulation} veranschaulicht. \\
 
 Aus voriger Überlegung ist nun bekannt $\tau_{\mathrm{c}}^{\mathrm{expect}} = k_\mathrm{T}\cdot\tau_{\mathrm{c}}^{\mathrm{th}}$. 
-Um $\tau_{\mathrm{c}}^{\mathrm{th}}$ zu bestimmen, wird eine weitere Simulation von der Arbeitsgruppe verwendet. 
+Um den Theoriewert bei perfekter räumlicher Kohärenz $\tau_{\mathrm{c}}^{\mathrm{th}}$ zu bestimmen, wird eine weitere Simulation von der Arbeitsgruppe verwendet. 
 Diese berechnet aus dem vom Hersteller gegebenen Transmissionspektrum des Filters über das Wiener-Khintchine-Theorem, d. h. eine Fouriertransformation, die erwartete $g^{(1)}$-Funktion, welche anschließend über die Siegert-Relation in $g^{(2)}(\tau, \rho=0)$ umgerechnet wird. 
 Daraus folgt dann für den vorliegenden Fall $\tau_{\mathrm{c}}^{\mathrm{th}} = \int \left(g^{(2)}(\tau, \rho=0) -1\right) d\tau = 0{,}152\,\mathrm{ps}$. 
 Abschließend ergibt sich also für die erwartete Kohärenzzeit bei verwendetem Aufbau:
@@ -79,4 +79,4 @@ Eine Aufnahme der Lochblende unter dem Mikroskop ist dafür in \autoref{fig:loch
 \end{figure}
 Der eingezeichnete Kreis entspricht einem Durchmesser von $30\,\mathrm{\mu m}$. 
 Auch wenn deutliche Abnutzungserscheinungen an den Rändern sichtbar sind, ist der gemessene Durchmesser sehr nah an den $30\,\mathrm{\mu m}$, die in die Berechnung von $k_\mathrm{T}$ eingehen. 
-Der erwähnte Wert von $\tau_{\mathrm{c}}^{\mathrm{expect}}$ entspricht daher der Theorierwartung. 
+Der erwähnte Wert von $\tau_{\mathrm{c}}^{\mathrm{expect}}$ entspricht daher der Erwartung an die Messung und muss nicht noch zusätzlich wegen eines abweichenden Lochblendendurchmessers angepasst werden. 

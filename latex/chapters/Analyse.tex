@@ -4,7 +4,7 @@ Anschließend wird auf die Integration des Bunching Peaks eingegangen, indem zue
 In diesem Zuge wird zudem kurz auf die Frage eingegangen, ob eine Integration der $g^{(2)}$-Funktion direkt oder eines Fits für die weitere Analyse sinnvoller ist. 
 Danach wird erklärt, wie der Fehler auf die berechneten Integrale abgeschätzt wird. 
 Nach diesen Schritten werden die ermittelten $\tau_{\mathrm{c}}$ mit der theoretischen Erwartung aus \autoref{eq:tau_c_th} verglichen und diskutiert, ob ein Einfluss der Kabellänge auf $\tau_{\mathrm{c}}$ vorliegt. 
-Abschließend werden die erzielten Ergebnisse auf die Daten der H.E.S.S. Kampagne von 2022 angewandt. 
+Abschließend werden die erzielten Ergebnisse auf Daten der H.E.S.S. Kampagne von 2022 angewandt. 
 
 \subsection{Beseitigung des niederfrequenten Störsignals in \texorpdfstring{$g^{(2)}(\tau)$}{g2}}
 \label{ssec:Beseitigung des niederfrequenten Störsignals}
@@ -22,11 +22,11 @@ Da der Bunching Peak und das Störsignal aber um Größenordnungen verschiedene 
 Dafür wird ein Tiefpassfilter zweiter Ordnung verwendet, dessen Grenzfrequenz so gewählt wird, dass lediglich die niederfrequenten Anteile des Signals extrahiert werden. 
 Das ermittelte Muster kann anschließend von $g^{(2)}(\tau)$ abgezogen werden, was den den durch das Störsignal entstehenden Offset entfernt und dafür sorgt, dass außerhalb des Bunching Peaks etwa $g^{(2)}\approx 0$ gilt. 
 Für die Wahl der richtigen Grenzfrequenz ist es nützlich, \autoref{fig:lf_offset für verschiedene Grenzfrequenz} zu betrachten. 
-In dieser ist abgebildet, wie das ermittelte Muster für verschiedene Grenzfrequenzen aussieht. 
+In dieser ist gezeigt, wie das ermittelte Muster für verschiedene Grenzfrequenzen aussieht. 
 \begin{figure}[h]
     \centering
     \includegraphics{images/Analysis/lf_offset.pdf}
-    \caption{Gezeigt ist ein Vergleich der extrahierten Muster für verschiedene Grenzfrequenzen. In Grau ist die gemittelte $g^{(2)}$-Funktion, aufgenommen mit der Kabelkombination Airborne 5 $40\times 40$ Meter, dargestellt. Farbig hinterlegt sind die ermittelten Muster für verschiedene Grenzfrequenzen. Es ist offensichtlich, dass bei niedrigen Grenzfrequenzen Muster entstehen, die das Störsignal nicht voll erfassen (lila), und bei hohen Grenzfrequenzen (gelb) Muster entstehen, die Amplitude vom Bunching Peak abschneiden. Eine gute Grenzfrequenz, die das Störsignal großflächig abdeckt und gleichzeitig keine feine Struktur erfasst, liegt bei 60\,kHz und ist schwarz gestrichelt eingezeichnet.}
+    \caption{Zu sehen ist ein Vergleich der extrahierten Muster für verschiedene Grenzfrequenzen. In Grau ist die gemittelte $g^{(2)}$-Funktion, aufgenommen mit der Kabelkombination Airborne 5 $40\times 40$ Meter, dargestellt. Farbig hinterlegt sind die ermittelten Muster für verschiedene Grenzfrequenzen. Es ist offensichtlich, dass bei niedrigen Grenzfrequenzen Muster entstehen, die das Störsignal nicht voll erfassen (lila), und bei hohen Grenzfrequenzen (gelb) Muster entstehen, die Amplitude vom Bunching Peak abschneiden. Eine gute Grenzfrequenz, die das Störsignal großflächig abdeckt und gleichzeitig keine feine Struktur erfasst, liegt bei 60\,kHz und ist schwarz gestrichelt eingezeichnet.}
     \label{fig:lf_offset für verschiedene Grenzfrequenz}
 \end{figure}
 In der Abbildung ist ersichtlich, dass sowohl zu niedrig als auch zu hoch gewählte Grenzfrequenzen problematisch sind. 
@@ -87,13 +87,13 @@ Eine weitere Herangehensweise liegt im Fit einer Gaußfunktion an das Signal:
 Dies entspricht der Methode, die für die Auswertung der Daten der H.E.S.S. Kampagne von 2022 verwendet wurde \cite{zmijaFirstIntensityInterferometry2023}. 
 Vorteil dieser Methode ist die relativ einfache, analytische Funktion, welche an die Daten gefittet wird. 
 Während bei der vorherigen Methode Daten korreliert und dann interpoliert werden müssen, um die Interpolationsfunktion daraufhin numerisch zu integrieren, kann für die Integration einer Gaußfunktion auf eine simple Formel zurückgegriffen werden:
-\todo{cite}
 \begin{equation}
     \tau_{\mathrm{c}} = \sqrt{2\pi} a\sigma
 \end{equation}
 Hierbei sind $a$ die Amplitude und $\sigma$ die Breite der gefitteten Gaußfunktion. 
 Dieses Vorgehen vereinfacht den Fit und erlaubt es, relativ einfach Fitparameter wie den Mittlelwert und die Breite $\sigma$ festzuhalten, was aufgrund niedriger Statistik z. B. für die Daten von 2022 nötig war \cite{zmijaFirstIntensityInterferometry2023}. 
-Allerdings hat diese Methode auch einen Nachteil, welcher in \autoref{fig:g2-fit Gauß} visualisiert ist. 
+Weiterhin ist der Bunching Peak in den H.E.S.S.-Daten aufgrund der vergleichsweise schlechten Zeitauflösung eher gaußförmig, weshalb der Fit einer Gaußfunktion mehr Sinn ergibt, als der einer reinen Korrelation der PMT-Pulse (vgl. \autoref{ssec:Vergleich mit Hess}). 
+Grundsätzlich hat diese Methode aber auch einen Nachteil, welcher in \autoref{fig:g2-fit Gauß} für Labordaten visualisiert ist. 
 \begin{figure}[h]
     \centering
     \includegraphics{images/Analysis/g2_gaussfit.pdf}
@@ -105,6 +105,7 @@ Diese Asymmetrie kann vom Gaußfit nicht vollständig erfasst werden -- es wird 
 Wie in \autoref{fig:g2-fit Gauß} ersichtlich, werden besonders die Randbereiche des Peaks nicht vom Gaußfit erfasst. 
 Da benachbarte Bins allerdings Korrelationen aufweisen und der Bunching Peak über mehrere Bins ausgedehnt ist, enthalten auch die Randbereiche des Peaks das Signal korrelierter Photonen. 
 In der vorliegenden Arbeit soll daher, gerade weil es die höhere Statistik der Labormessungen zulässt, eine Funktion konstruiert werden, welche von ersterer Methode ausgeht. 
+Zusätzlich soll diese sowohl einen asymmetrischen, als auch gaußförmigen Bunching Peak beschreiben können. 
 Die Schritte bis zur fertigen Fitfunktion werden im Folgenden erläutert.
 
 \subsubsection{Neue Herangehensweise: Faltung beider Funktionen}
@@ -130,8 +131,8 @@ Diese ist zusammen mit den Datenpunkten der korrelierten Pulsform in \autoref{fi
     \label{fig:Interpolation}
 \end{figure}
 Die so ermittelte Funktion $y(\tau)$ kann nun durch freie Parameter ergänzt werden, sodass diese an die aufgenommenen, gemittelten Datenpunkte der $g^{(2)}$-Funktion gefittet werden kann. 
-Notwendig sind eine Verschiebung in x-Richtung $\tau_0$ und ein Amplitudenfaktor $a$, welcher den Fit in y-Richtung staucht und streckt, d. h. $f(\tau, \tau_0, a) = ay(\tau - \tau_0)$. 
-Weiterhin kann allerdings eine Streckung des Peaks in x-Richtung im Vergleich zu $y(\tau)$ vorliegen, was auf eine Veränderung in der Zeitauflösung der Messung im Vergleich zur Kalibration zurückzuführen ist. 
+Notwendig sind eine Zeitverschiebung $\tau_0$ und ein Amplitudenfaktor $a$, welcher den Fit in y-Richtung staucht und streckt, d. h. $f(\tau, \tau_0, a) = ay(\tau - \tau_0)$. 
+Weiterhin kann allerdings eine Streckung des Peaks in der Zeit im Vergleich zu $y(\tau)$ vorliegen, was auf eine Veränderung in der Zeitauflösung der Messung im Vergleich zur Kalibration zurückzuführen ist. 
 Da für die Konstruktion der korrelierten gemittelten Photonenpulse, Photonenpeaks der PMT-Puls-Kalibrationsmessung zuerst übereinander verschoben und anschließend gemittelt werden, enthält $y(\tau)$ bereits die Zeitauflösung des Systems, welches durch das Binning bedingt ist. 
 Eine zusätzliche Verbreiterung des Bunching Peaks im Vergleich zu $y(\tau)$ wäre daher auf eine zusätzliche statistische Schwankung der Position des Bunching Peaks zurückzuführen, welche in der Kalibrationsmessung nicht vorliegt. 
 Beispiele hierfür sind zeitliche Schwankungen der PMT-Ausgangssignale oder eine durch das Teleskop selbst bedingte Verschlechterung der Zeitauflösung (vgl. \autoref{ssec:Vergleich mit Hess}).
@@ -154,18 +155,19 @@ Durch die erwähnten Normierungs- und Verschiebungsschritte der Funktionen, welc
 Auf diese Weise ist eine Einschränkung der Fitparameter für die spätere Auswertung möglich, was die Konvergenz der Fits verbessert. 
 Die Größe von $\sigma$ beschreibt eine mögliche systembedingte Zeitauflösung während der Messung, welche während der Kalibration nicht vorliegt. 
 Wie eine Variation des Fitparameters $\sigma$ die resultierende Funktion $f$ beeinflusst, ist in \autoref{fig:Fitfuktion für verschiedene sigma} für $a=1$, $\tau_0=0$ dargestellt. 
+Es ist ersichtlich, dass eine Erhöhung des Parameters $\sigma$ zu einer Verbreiterung der Fitfunktion führt, welche zudem immer glatter und gaußförmiger wird. 
+
 \begin{figure}[h]
     \centering
     \includegraphics{images/Analysis/corr_pulses_diff_sigma.pdf}
     \caption{Dargestellt ist ein Ausschnitt der resultierenden Fitfunktion $f$ bei Variation des Fitparamters $\sigma$ ($a=1$, $\tau_0=0$). Für sehr niedrige $\sigma$ entspricht die Funktion praktisch der korrelierten Pulsform der PMTs und für größer werdende $\sigma$ nähert sich die Funktion immer mehr der Form einer Gaußfunktion an.}
     \label{fig:Fitfuktion für verschiedene sigma}
 \end{figure}
-Es ist ersichtlich, dass eine Erhöhung des Parameters $\sigma$ zu einer Verbreiterung der Fitfunktion führt, welche zudem immer glatter und gaußförmiger wird. \\
 
 Die Konstruktion und Verwendung der Fitfunktion, wie oben beschrieben, hat einige Vorteile. 
-Wie bereits angesprochen, entspricht eine Faltung von einer Gaußfunktion, welche die Zeitauflösung während der Messung enthält, mit der gemessenen erwarteten Peakform bei bestmöglicher Zeitauflösung am ehesten der theoretischen Erwartung an die Form des Bunching Peaks. 
+Wie bereits angesprochen, entspricht eine Faltung von einer Gaußfunktion, welche die Zeitauflösung während der Messung enthält, mit der gemessenen erwarteten Peakform bei bestmöglicher Zeitauflösung am ehesten der theoretischen Erwartung an die Form des Bunching Peaks [vgl. \cite{lasseguesFieldIntensityCorrelations2022}]. 
 Zudem werden durch dieses Vorgehen eine mögliche Asymmetrie des Peaks und Ringing der PMTs berücksichtigt, was zu einer genaueren Bestimmung des Integrals und damit der Kohärenzzeit führt. 
-Ringing bezeichnet in diesem Kontext ein Nachschwingen der Ausgabespannung nach dem steilen Signalabfall am Ende des Peaks (weitergehendes z. B. in \cite{RelatedDocumentsPhotomultiplier}). 
+Ringing bezeichnet in diesem Kontext ein Nachschwingen der Ausgabespannung nach dem steilen Signalabfall am Ende des Peaks (weitergehendes z. B. in \cite{HamamatsuPhotonicsPMT}). 
 Durch die Veränderung der korrelierten Pulsform für jede Kabellängenkombination ändert sich mit dieser Methode also die Fitfunktion und bildet so die kabelabhängige Form des Bunching Peaks besser ab. 
 Zusätzlich kann durch dieses Vorgehen die Zeitauflösung des Systems aus den gemessenen Daten bestimmt werden. 
 Aus diesen Gründen wird im Folgenden auf die soeben beschriebene Fitfunktion zurückgegriffen. 
@@ -179,13 +181,7 @@ Anschließend werden sowohl der Fit als auch die Daten selbst numerisch integrie
 Der Fit erfolgt in einem breiten Intervall von $\pm 100$ Bins, d. h. $\pm 160\,\mathrm{ns}$ um den Peak herum. 
 Die Integration erfolgt in einem Intervall $[\tau_{\mathrm{max}}-w, \tau_{\mathrm{max}}+w]$, wobei $\tau_{\mathrm{max}}$ dem Zeitpunkt entspricht, an welchem $g^{(2)}(\tau)$ maximal ist und die Integrationsbreite $w$ im Bereich $w\in [1,160]\,\mathrm{ns}$ variiert wird. 
 Das Resultat dieser Analyse ist in \autoref{fig:integration verschiedene Breiten} dargestellt. 
-\begin{figure}[hp]
-    \centering
-    \includegraphics{images/Analysis/integration_different_width.pdf}
-    \caption{Oben ist die $g^{(2)}$-Funktion (blau) sowie ein Fit an diese (orange) zu sehen. Für verschiedene Integrationsbreiten ist unten in gleichen Farben abgebildet, wie sich die resultierenden Integrale der beiden Funktionen entwickeln. Für die Integration der Rohdaten ist eine deutliche Fluktuation des Integrals zu sehen, während die Integration des Fits sich auch für große Breiten stabil verhält.}
-    \label{fig:integration verschiedene Breiten}
-\end{figure}
-In der Grafik ist erkennbar, dass die Integration des Fits für steigende Integrationsbreiten zunimmt und schließlich einen stabilen Wert annimmt. 
+In der Grafik ist erkennbar, dass das Integral des Fits für steigende Integrationsbreiten zunimmt und schließlich einen stabilen Wert annimmt. 
 Dies ergibt Sinn, da die Interpolation der Daten im letzten Schritt der Konstruktion der Fitfunktion außerhalb des Bereichs der Datenpunkte den konstanten Wert 0 annimmt. 
 Da weiterhin kein y-Offset gefittet wird, ändert sich das Integral ab einer gewissen Integrationsbreite daher nicht mehr. 
 Die direkte Integration der Messdaten hingegen ist stark abhängig von Fluktuationen der Korrelationsfunktion außerhalb des Bunching Peaks. 
@@ -197,16 +193,22 @@ Aus dem Grund der besseren Vergleichbarkeit der Messreihen untereinander wird da
 Aus erwähnter Konstruktion mittels Interpolation und aus \autoref{fig:integration verschiedene Breiten} unten wird weiterhin ersichtlich, dass sich das Integral lediglich bis $w\approx 100\,\mathrm{ns}$ nennenswert ändert. 
 Als Integrationsbreite ist also ein Wert von $w\gtrsim 100\,\mathrm{ns}$ geeignet, wobei ein zu großes Intervall per Konstruktion wie erwähnt keine Abweichungen verursacht. 
 Aus diesem Grund wird die Funktion $f(\tau, a, \tau_0, \sigma)$ für die folgende Analyse stets in einem Intervall von $\pm 100$ Bins bzw. $\pm 160\,\mathrm{ns}$ gefittet und integriert. 
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/Analysis/integration_different_width.pdf}
+    \caption{Oben ist die $g^{(2)}$-Funktion (blau) sowie ein Fit an diese (orange) zu sehen. Für verschiedene Integrationsbreiten ist unten in gleichen Farben abgebildet, wie sich die resultierenden Integrale der beiden Funktionen entwickeln. Für die Integration der Rohdaten ist eine deutliche Fluktuation des Integrals zu sehen, während die Integration des Fits sich auch für große Breiten stabil verhält.}
+    \label{fig:integration verschiedene Breiten}
+\end{figure}
 
 \subsection{Fehler von \texorpdfstring{$\tau_{\mathrm{c}}$}{tc}}
 \label{ssec:Fehler von tc}
 Nachdem im vorigen Abschnitt auf das Integrieren des Bunching Peaks eingegangen wurde, soll im Folgenden der Fehler ebendieses Integrals abgeschätzt werden. 
 Durch die Korrelation benachbarter Bins lässt sich nicht ohne weiteres ein Fehler auf den Wert der Korrelationsfunktion bestimmen, welcher durch den Fit fortgepflanzt werden kann, da die verwendete $\chi^2$-Minimierung statistisch unabhängige Fehler zwischen Samples voraussetzt \cite{vugrinConfidenceRegionEstimation2007}. 
 Stattdessen wird eine andere Methode genutzt, welche das Rauschen der $g^{(2)}$-Funktion unmittelbar mit einbezieht. 
-Dafür wird zuerst wie im letzten Abschnitt beschrieben ein Fit an den Bunching Peak durchgeführt, welcher daraufhin integriert wird, um den Wert für $\tau_{\mathrm{c}}$ zu erhalten. 
-Um anschließend auf den Fehler zu schließen, wird \autoref{eq:fit funktion final} mit den Fitparametern aus ebendiesem Fit an der Stelle des Bunching Peaks ausgewertet, was zu einer Peak-Vorlage führt. 
-Diese Vorlage wird dann in feinen Schritten über die $g^{(2)}$-Funktion verschoben und zu dieser an der jeweiligen Stelle addiert. 
-Es wird an dieser Stelle der Fit an die Daten, statt des Bunching Peaks selbst, verschoben, um lediglich das Signal, nicht aber das umliegende Rauschen mitzuverschieben, welches einen systematischen Einfluss auf den Verlauf des Rauschens um den verschobenen Peak hätte. 
+Dafür wird zuerst, wie im letzten Abschnitt beschrieben, ein Fit an den Bunching Peak durchgeführt, welcher daraufhin integriert wird, um den Wert für $\tau_{\mathrm{c}}$ zu erhalten. 
+Um anschließend auf den Fehler zu schließen, wird \autoref{eq:fit funktion final} mit den Parametern aus ebendiesem Fit an der Stelle des Bunching Peaks ausgewertet, was zu einem Peak-Muster führt. 
+Dieses Muster wird dann in feinen Schritten über die $g^{(2)}$-Funktion verschoben und zu dieser an der jeweiligen Stelle addiert. 
+Es wird hier der Fit an die Daten, statt des Bunching Peaks selbst, verschoben, um lediglich das Signal, nicht aber das umliegende Rauschen mitzuverschieben, welches einen systematischen Einfluss auf den Verlauf des Rauschens um den verschobenen Peak hätte. 
 Der so erhaltene verschobene Peak entspricht jenem, der gemessen worden wäre, wenn das Rauschen um und unter dem Peak einer zufälligen anderen Realisierung entspräche. 
 Da der hauptsächliche Fehler auf das Integral der zufälligen Position des Peaks in der $g^{(2)}$-Baseline entspricht (im Besonderen, ob der Peak auf einer niedrigen oder hohen Fluktuation liegt), lässt sich durch die Änderung des Integrals bei verschiedenen Peakpositionen der Fehler auf das Integral sinnvoll abschätzen. 
 Für jede Peakposition wird anschließend erneut mit derselben Methodik gefittet und integriert. 
@@ -214,15 +216,9 @@ Das Resultat dieses Vorgehens ist eine Liste an Integralen.
 Für den Fehler auf das Integral wird abschließend die Standardabweichung dieser Liste bestimmt, um zu quantifizieren, wie stark die Integrale im Mittel unter dem Einfluss des Rauschens in der Baseline schwanken. 
 Die Standardabweichung als Maß für den Fehler zu wählen, ergibt an dieser Stelle Sinn, da die Schwankung der Baseline als näherungsweise gaußverteilt angenommen werden kann. 
 Dies liegt daran, dass die Wahrscheinlichkeitsverteilung der Intensitätsfluktuationen einer chaotischen Lichtquelle für $\tau\gg \tau_{\mathrm{c}}$ der Poissonverteilung des kohärenten Lichts um $g^{(2)}=1$ entspricht, was für hohe Photonenzahlen in eine Gaußverteilung übergeht \cite[Kap. 5.5]{foxQuantumOpticsIntroduction2006}.
-Obwohl diese Fluktuationen sich in der Theorie exakt kürzen (vgl. \autoref{eq:g2_final}), sodass $g^{(2)}(\tau \gg \tau_{\mathrm{c}}) = 1$, ist dies im Experiment aufgrund der Unterteilung in Zeitbins, Messabschnitte und weiterer Effekte nicht der Fall, sodass eine gaußverteilte Schwankung um die 1 verbleibt. \todo{macht das sinn?} \\
+Daher wird auch eine gaußverteilte Schwankung der $g^{(2)}$-Funktion um den Wert 1 erwartet. \\
 
 Exemplarisch ist das oben erklärte Vorgehen für die $10\times 10\,\mathrm{m}$-Airborne 5 Messung in \autoref{fig:Fehler auf tc} gezeigt. 
-\begin{figure}[hp]
-    \centering
-    \includegraphics{images/Analysis/integration_error.pdf}
-    \caption{Oben sind die gemittelte $g^{(2)}$-Funktion (blau), der Fit des Bunching Peaks (orange), die verschobenen und zur Baseline addierten Peaks (Farbgradient lila-gelb, je nach Verschiebung) und die erneut durchgeführten Fits an diese (schwarz gestrichelt) dargestellt. Unten links sind die reultierenden Integrale der verschobenen Fits und des Fits an den Bunching Peak (entspricht der Verschiebung $\Delta\tau=0$) im selben Farbschema dargestellt. Zur Bestimmung des Fehlers $\sigma_{\tau_{\mathrm{c}}}$ wird die Standardabweichung der Verteilung der schwarzen Punkte berechnet, während $\tau_{\mathrm{c}}$ dem orangenen Punkt entspricht. Unten rechts ist abschließend die Verteilung der schwarzen Punkte histogrammiert. Weiterhin ist ein Gaußfit (rot) durchgeführt worden, dessen Verlauf die Erwartung bestätigt, dass die Verteilung der Integrale gaußverteilt ist.}
-    \label{fig:Fehler auf tc}
-\end{figure}
 Zuerst erfolgt im obigen Graph der Fit und die Integration des Bunching Peaks. 
 Für alle Fits wurden erneut Fit- und Integrationsfenster von $\pm 100$ Bins gewählt (vgl. \autoref{ssec:Wahl der Integrationsmethode}). 
 Anschließend wird die Fitfunktion in $25\,\mathrm{ns}$-Schritten zwischen $\tau = -6000\,\mathrm{ns}$ und $\tau = 6000\,\mathrm{ns}$ verschoben, wobei darauf geachtet wird, die Region des ursprünglichen Bunching Peaks auszulassen. 
@@ -233,6 +229,12 @@ Zur Verifikation der Annahme einer Gaußverteilung der Integrale, die in die Ber
 An dieses wurde ein Fit einer Gaußfunktion durchgeführt, welche in guter Übereinstimmung mit der Verteilung der Punkte ist. 
 Wie anhand theoretischer Überlegungen erwartet, ist eine Gaußverteilung also eine gerechtfertigte Annahme an die Verteilung der Änderung der Integrale mit verschiedenem $\Delta\tau$. 
 Dies bestätigt, dass die gewählte Methode, insbesondere die Berechnung der Standardabweichung, geeignet ist, um die Schwankung der Integrale und daher $\sigma_{\tau_{\mathrm{c}}}$ zu quantifizieren. 
+\begin{figure}[hp]
+    \centering
+    \includegraphics{images/Analysis/integration_error.pdf}
+    \caption{Oben sind die gemittelte $g^{(2)}$-Funktion (blau), der Fit des Bunching Peaks (orange), die verschobenen und zur Baseline addierten Peaks (Farbgradient lila-gelb, je nach Verschiebung) und die erneut durchgeführten Fits an diese (schwarz gestrichelt) dargestellt. Unten links sind die reultierenden Integrale der verschobenen Fits und des Fits an den Bunching Peak (entspricht der Verschiebung $\Delta\tau=0$) im selben Farbschema dargestellt. Zur Bestimmung des Fehlers $\sigma_{\tau_{\mathrm{c}}}$ wird die Standardabweichung der Verteilung der schwarzen Punkte berechnet, während $\tau_{\mathrm{c}}$ dem orangenen Punkt entspricht. Unten rechts ist abschließend die Verteilung der schwarzen Punkte histogrammiert. Weiterhin ist ein Gaußfit (rot) durchgeführt worden, dessen Verlauf die Erwartung bestätigt, dass die Verteilung der Integrale gaußverteilt ist.}
+    \label{fig:Fehler auf tc}
+\end{figure}
 
 \subsection{Ergebnisse für verschiedene Kabelkombinationen}
 \label{ssec:Ergebnisse für verschiedene Kabelkombinationen}
@@ -249,7 +251,7 @@ Die exakten Werte der bestimmten Kohärenzzeiten sind zudem in \autoref{tab:geme
     \caption{Dargestellt sind oben die gemittelten $g^{(2)}$-Funktionen und Fits und unten die resultierenden Integrale und Fehler für alle verwendeten Kabelkombinationen.}
     \label{fig:integrale ergebnisse}
 \end{figure}
-Im obigen Graph ist qualitativ erkennbar, dass die Peaks eine geringere Amplitude aufweisen, je länger die kombinierte Kabellänge ist. 
+Im Graph ist qualitativ erkennbar, dass die Peaks eine geringere Amplitude aufweisen, je länger die kombinierte Kabellänge ist. 
 Dies deckt sich mit bisherigen Resultaten von den Messungen bei H.E.S.S. \cite{zmijaFirstIntensityInterferometry2023}. 
 Weiterhin auffällig ist, dass der Peak für ungleiche Kabellängen von der Null verschoben ist. 
 Dies stimmt mit der Erwartung überein, da das Signal eines Kanals vor der Korrelation eine um die Kabellängendifferenz erhöhte Strecke durchläuft. 
@@ -265,14 +267,14 @@ Allerdings muss mit obiger Interpretation vorsichtig umgegangen werden.
 Es ist zu betonen, dass diese Ergebnisse lediglich ein Indiz für die erwähnte Abhängigkeit der Kohärenzzeit von der Kabeldämpfung darstellen. 
 Betrachtet man die eingezeichneten Fehlerbalken, welche aufgrund der Überlegungen in \autoref{ssec:Fehler von tc} 1-$\sigma$-Intervallen entsprechen, ist festzustellen, dass die Unterschiede der Integrale nicht statistisch signifikant sind. 
 Besonders zwischen den Datenpunkten $10\times 40\,\mathrm{m}$ und $40\times 40\,\mathrm{m}$ ist im Rahmen der Unsicherheit kein Unterschied festzustellen. 
-Auch wenn sich die Fehlerbalken der erwähnten Messungen nicht mit der $10\times 10\,\mathrm{m}$-Messung decken, ist dies nicht automatisch auf einen Unterschied von $\tau_{\mathrm{c}}$ zurückzuführen. 
+Auch wenn sich die Fehlerbalken der erwähnten Messungen zudem nicht mit der $10\times 10\,\mathrm{m}$-Messung decken, ist dies nicht automatisch auf einen Unterschied von $\tau_{\mathrm{c}}$ zurückzuführen. 
 Schließlich ist die Bedeutung der Fehlerbalken vielmehr, dass jeder aufgetragene Punkt bei einer Wiederholung der Messung in etwa 32\% der Fälle außerhalb der Fehlerbalken liegt. 
 Zusammenfassend lässt sich also kein statistisch signifikanter Einfluss der Kabellänge bzw. Dämpfung der Kabel auf den Wert von $\tau_{\mathrm{c}}$ feststellen. 
-Es bleibt aber zu erwähnen, dass sich die Abnahme der Integralwerte für steigende kombinierte Kabellänge in allen von der Arbeitsgruppe bisher durchgeführten Experimenten zeigt \cite{zmijaFirstIntensityInterferometry2023}. 
+Es bleibt aber zu erwähnen, dass sich die Abnahme der Integralwerte für steigende kombinierte Kabellänge auch bei sämtlichen Daten der H.E.S.S.-Kampagne von 2022 zeigt \cite{zmijaFirstIntensityInterferometry2023}. 
 Auch wenn die vorgestellten Ergebnisse dies nicht einwandfrei beweisen können, stellen sie daher weitere Indize für einen bisher unbekannten Einfluss dar. 
 Langzeitmessungen mit höherer Statistik sind vonnöten, um statistisch aussagekräftigere Ergebnisse zu erhalten. 
 Mit diesen ließe sich besser verstehen, ob es einen Effekt gibt, wenn ja, woher dieser genau kommt und an welchem Punkt der Signalverarbeitung er sich auswirkt. 
-Während, wie in \autoref{ssec:Intensitätsinterferometrie} beschrieben, ein direkter Einfluss einer zeitunabhängigen Dämpfung auf $g^{(2)}$ theoretisch nicht zu erwarten ist, ist z. B. eine Dämpfungsabhängigkeit an einem einzelnen Schritt im komplizierten Pre-Processing der Daten durchaus nicht auszuschließen und bedarf weiterer Untersuchung mit statistisch aussagekräftigeren Daten. 
+Während, wie in \autoref{ssec:Intensitätsinterferometrie} beschrieben, ein direkter Einfluss einer zeitunabhängigen Dämpfung auf $g^{(2)}$ theoretisch nicht zu erwarten ist, ist z. B. eine Dämpfungsabhängigkeit an einem einzelnen Schritt im komplizierten Pre-Processing der Daten durchaus nicht auszuschließen und bedarf weiterer Untersuchung mit statistisch aussagekräftigeren Daten. \\
 
 \begin{table}[h]
     \centering
@@ -303,12 +305,6 @@ Wäre dies der Fall, würde das darauf hinweisen, dass in beiden Fällen möglic
 Die Daten der Kabellängenkombinationen $10 \times 10\,\mathrm{m}$, $10 \times 40\,\mathrm{m}$ sowie $40 \times 40\,\mathrm{m}$ und deren mittlere Pulsformen werden über die erwähnten drei Nächte zuerst gemittelt und gespeichert. 
 Anschließend werden die gemittelten $g^{(2)}$-Funktionen von Shaula mit der oben beschriebenen Methode gefittet und integriert, um möglichst vergleichbare Ergebnisse zu den Labormessungen zu schaffen. 
 Die so ermittelten Ergebnisse sind erneut als Graph (\autoref{fig:integration shaula}) sowie tabellarisch (\autoref{tab:Kohärenzzeiten Shaula}) dargestellt. 
-\begin{figure}[hp]
-    \centering
-    \includegraphics{images/Analysis/Shaula_combined.pdf}
-    \caption{Gezeigt sind die berechneten $\tau_{\mathrm{c}}$ die sich bei Integration der Shaula-Daten ergeben.}
-    \label{fig:integration shaula}
-\end{figure}
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|c|} \hline
@@ -320,6 +316,12 @@ Die so ermittelten Ergebnisse sind erneut als Graph (\autoref{fig:integration sh
     \caption{Aufgelistet sind die bestimmten Kohärenzzeiten und Fehler für die verwendeten Kabelkombinationen bei der H.E.S.S.-Messung von Shaula. Für die Messung wurden Kabel des Typs Airborne 5 verwendet \cite{zmijaFirstIntensityInterferometry2023}.}
     \label{tab:Kohärenzzeiten Shaula}
 \end{table}
+\begin{figure}[H]
+    \centering
+    \includegraphics{images/Analysis/Shaula_combined.pdf}
+    \caption{Gezeigt sind die berechneten $\tau_{\mathrm{c}}$ die sich bei Integration der Shaula-Daten ergeben.}
+    \label{fig:integration shaula}
+\end{figure}
 Für einen Vergleich der beiden Messungen bietet es sich an, zu berechnen, um welchen Faktor das Integral des $10\times 40\,\mathrm{m}$-Peaks bzw. des $40\times 40\,\mathrm{m}$-Peaks kleiner ist als das Integral des $10\times 10\,\mathrm{m}$-Peaks, welches für beide Messungen am größten ist. 
 Konkret wird also folgendes Verhältnis verglichen, dessen Fehler sich aus gaußscher Fehlerfortpflanzung ergibt:
 \begin{equation}
